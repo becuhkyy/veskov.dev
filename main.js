@@ -17,10 +17,15 @@ const CONFIG = {
     "Outside the day job: GoMint, an NFT platform built around custodial key control, a bid marketplace and IPFS storage, took 2nd place at the 2024 Hedera hackathon. I also mentor student teams shipping their first product at Teenovator.",
     "Currently interviewing. If you are hiring senior full-stack engineers, email is the fast path; the rest of this terminal is the scenic route.",
   ],
+  /* grouped the way the cv groups them; the hosting row is the 12-year backstory */
   skills: [
-    "typescript", "node.js", "nestjs", "react 19", "next.js", "tanstack",
-    "c# / .net", "graphql", "postgresql", "mssql", "prisma",
-    "docker", "kubernetes", "linux", "playwright", "github actions",
+    { group: "languages", items: ["typescript", "c# / .net"] },
+    { group: "backend",   items: ["node.js", "nestjs", "graphql", "kafka"] },
+    { group: "frontend",  items: ["react 19", "next.js", "tanstack", "shadcn"] },
+    { group: "data",      items: ["postgresql", "mssql", "prisma"] },
+    { group: "infra",     items: ["linux", "docker", "kubernetes", "nginx", "apache"] },
+    { group: "hosting",   items: ["kvm", "proxmox", "incus", "openvz", "whm/cpanel"] },
+    { group: "tooling",   items: ["playwright", "github actions"] },
   ],
   /* the ones the job hunt runs on: rendered with an amber accent */
   coreSkills: ["typescript", "node.js", "react 19"],
@@ -414,11 +419,18 @@ function aboutOut() {
   const o = outNode();
   CONFIG.about.forEach((p) => o.appendChild(el("p", null, p)));
   o.appendChild(el("div", "dim", "# skills"));
-  const row = el("div", "skill-row");
-  CONFIG.skills.forEach((s) =>
-    row.appendChild(el("span", CONFIG.coreSkills.includes(s) ? "tag tag-core" : "tag", s))
-  );
-  o.appendChild(row);
+  const list = el("div", "skill-list");
+  CONFIG.skills.forEach((g) => {
+    const line = el("div", "skill-group");
+    line.appendChild(el("span", "skill-label dim", g.group));
+    const tags = el("span", "skill-tags");
+    g.items.forEach((s) =>
+      tags.appendChild(el("span", CONFIG.coreSkills.includes(s) ? "tag tag-core" : "tag", s))
+    );
+    line.appendChild(tags);
+    list.appendChild(line);
+  });
+  o.appendChild(list);
   return o;
 }
 
@@ -528,7 +540,7 @@ function statusOut() {
     ["Docs",     s.docs],
     ["",         "mailto:" + CONFIG.contacts.email],
     ["Main PID", `${s.pid} (${first})`],
-    ["Tasks",    `${CONFIG.skills.length} (${CONFIG.coreSkills.join(", ")}, and a volleyball club)`],
+    ["Tasks",    `${CONFIG.skills.reduce((n, g) => n + g.items.length, 0)} (${CONFIG.coreSkills.join(", ")}, and a volleyball club)`],
     ["Memory",   s.tenure],
     ["CPU",      `${CONFIG.location} (${s.timezone})`],
   ].forEach(([k, v]) => block.appendChild(el("div", null, row(k, v))));

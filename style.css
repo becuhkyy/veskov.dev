@@ -254,7 +254,10 @@ a:hover { text-shadow: 0 0 6px rgba(91, 231, 233, .5); }
 @keyframes glitch-b { 0%{transform:translate(-2px,1px)} 50%{transform:translate(2px,-1px)} 100%{transform:translate(-1px,0)} }
 
 /* ---------- about output ---------- */
-.skill-row { display: flex; flex-wrap: wrap; gap: .5rem; margin: .3rem 0 .5rem; white-space: normal; }
+.skill-list { display: flex; flex-direction: column; gap: .45rem; margin: .3rem 0 .5rem; white-space: normal; }
+.skill-group { display: flex; align-items: baseline; gap: .7rem; }
+.skill-label { flex: 0 0 9ch; font-size: 13px; }
+.skill-tags { display: flex; flex-wrap: wrap; gap: .4rem; }
 .tag {
   border: 1px solid var(--border); border-radius: 4px;
   padding: .1rem .55rem; font-size: 13px; color: var(--green-dim);
