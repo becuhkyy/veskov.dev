@@ -864,14 +864,27 @@ function deskPoint(e) {
   return { x: e.clientX - d.left, y: e.clientY - d.top };
 }
 
+/* the toggle animates; drags and resizes cancel it and move raw */
+let animTimer = null;
+function animateGeom(fn) {
+  windowEl.classList.add("animating");
+  fn();
+  clearTimeout(animTimer);
+  animTimer = setTimeout(() => windowEl.classList.remove("animating"), 260);
+}
+function stopAnim() {
+  clearTimeout(animTimer);
+  windowEl.classList.remove("animating");
+}
+
 function setMaximized(on) {
   if (!FLOATING.matches || on === maximized) return;
   const g = winRect();
   if (on) {
     prevGeom = g;
-    applyGeom({ left: 0, top: 0, width: g.dw, height: g.dh });
+    animateGeom(() => applyGeom({ left: 0, top: 0, width: g.dw, height: g.dh }));
   } else if (prevGeom) {
-    applyGeom(clampGeom({ ...prevGeom, dw: g.dw, dh: g.dh }));
+    animateGeom(() => applyGeom(clampGeom({ ...prevGeom, dw: g.dw, dh: g.dh })));
   }
   maximized = on;
   windowEl.classList.toggle("maximized", on);
@@ -880,6 +893,7 @@ function setMaximized(on) {
 let drag = null;
 titlebar.addEventListener("pointerdown", (e) => {
   if (!FLOATING.matches || e.button !== 0 || e.target.closest("button")) return;
+  stopAnim(); // a grab mid-animation freezes the window where it is
   const p = deskPoint(e);
   const g = winRect();
   // nothing changes yet: a click is not a drag until the pointer proves it
@@ -921,6 +935,7 @@ titlebar.addEventListener("dblclick", (e) => {
 let resizing = null;
 grip.addEventListener("pointerdown", (e) => {
   if (!FLOATING.matches || e.button !== 0) return;
+  stopAnim();
   const g = winRect();
   const p = deskPoint(e);
   resizing = { w: g.width, h: g.height, x: p.x, y: p.y };

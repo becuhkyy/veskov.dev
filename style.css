@@ -77,6 +77,11 @@ body {
     0 0 80px rgba(70, 255, 138, .08);
 }
 .window.maximized { border-radius: 0; }
+/* only the maximize toggle animates: dragging must track the cursor 1:1 */
+.window.animating {
+  transition: left .22s ease, top .22s ease,
+              width .22s ease, height .22s ease, border-radius .22s ease;
+}
 
 /* ---------- CRT effects: absolute, so they live on the screen ---------- */
 .scanlines {
@@ -410,6 +415,7 @@ a:hover { text-shadow: 0 0 6px rgba(91, 231, 233, .5); }
 }
 
 @media (prefers-reduced-motion: reduce) {
+  .window.animating { transition: none; }
   .cursor,
   #prompt-form:focus-within .cursor,
   #prompt-input[readonly] + .cursor { animation: none; }
