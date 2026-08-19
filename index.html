@@ -64,6 +64,7 @@
   <a href="#" data-cmd="cat ~/contacts.md">~/contact</a>
 </nav>
 
+<div class="desk" id="desk">
 <div class="window" id="window">
 
   <!-- CRT overlays: the effect belongs to the screen, not the desktop -->
@@ -78,7 +79,7 @@
     <div class="titlebar-btns">
       <button type="button" class="dot red" id="btn-close" aria-label="close the window (it declines)"></button>
       <button type="button" class="dot yellow" id="btn-min" aria-label="clear the screen"></button>
-      <button type="button" class="dot green" id="btn-max" aria-label="toggle fullscreen"></button>
+      <button type="button" class="dot green" id="btn-max" aria-label="maximize the window"></button>
     </div>
     <span class="titlebar-title">guest@veskov.dev: ~</span>
     <div class="titlebar-spacer" aria-hidden="true"></div>
@@ -128,6 +129,9 @@
     </main>
   </div>
 
+  <div class="win-resize" aria-hidden="true"></div>
+
+</div>
 </div>
 
 <footer class="deskfoot">

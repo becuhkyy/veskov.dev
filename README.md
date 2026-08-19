@@ -15,8 +15,10 @@ Then the prompt is handed to the visitor.
 
 The page is drawn as a desktop: a nav bar on top, one terminal window under it
 (the session scrolls inside the window), and the copyright line as a caption
-below. The three title-bar buttons work, for a terminal's idea of work: close
-runs `exit`, minimize runs `clear`, maximize goes fullscreen. The nav links
+below. The window is a real one: drag it by the title bar, resize it from the
+bottom-right grip, maximize with the green button or a double-click on the bar.
+The other two buttons answer in-session: close runs `exit`, minimize runs
+`clear`. On phones the window pins itself full-bleed instead. The nav links
 (`~/about`, `~/work`, `~/projects`, `~/contact`) type their own commands into
 the session. Everything the visitor types at the prompt is answered
 too, so try `cv`, `status`, `sudo`, `ping`, `ls`, `work`, `projects`, `clear`.

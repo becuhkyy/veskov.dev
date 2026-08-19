@@ -57,11 +57,14 @@ body {
 .topnav a:hover { color: var(--green); text-shadow: var(--glow); }
 
 /* ---------- The window ---------- */
+/* the workspace between the bars */
+.desk { position: relative; flex: 1; min-height: 0; }
+
 .window {
-  position: relative;
-  width: min(100% - 2.8rem, var(--winw));
-  margin: 1.1rem auto;
-  flex: 1; min-height: 0;
+  position: absolute;
+  left: 4%; top: 6%;
+  width: min(var(--winw), 80%);
+  height: min(680px, 86%);
   display: flex; flex-direction: column;
   background: var(--bg);
   border: 1px solid #27402c;
@@ -73,6 +76,7 @@ body {
     0 12px 36px rgba(0, 0, 0, .55),
     0 0 80px rgba(70, 255, 138, .08);
 }
+.window.maximized { border-radius: 0; }
 
 /* ---------- CRT effects: absolute, so they live on the screen ---------- */
 .scanlines {
@@ -108,7 +112,28 @@ body {
   padding: .55rem .9rem;
   background: linear-gradient(var(--chrome), #0c120c);
   border-bottom: 1px solid var(--border);
+  user-select: none; -webkit-user-select: none;
+  touch-action: none;
 }
+@media (min-width: 701px) {
+  .titlebar { cursor: grab; }
+  .titlebar:active { cursor: grabbing; }
+  .titlebar .dot { cursor: pointer; }
+}
+
+/* the grip in the corner: three diagonal ridges, like every WM ever */
+.win-resize {
+  position: absolute; right: 2px; bottom: 2px; z-index: 55;
+  width: 18px; height: 18px;
+  cursor: nwse-resize;
+  touch-action: none;
+  clip-path: polygon(100% 0, 100% 100%, 0 100%);
+  background: repeating-linear-gradient(135deg,
+    transparent 0 4px, var(--green-dim) 4px 6px);
+  opacity: .55;
+  border-bottom-right-radius: 8px;
+}
+@media (hover: hover) { .win-resize:hover { opacity: 1; } }
 .titlebar-btns { display: flex; gap: 8px; width: 64px; flex: none; }
 /* the buttons do things (exit, clear, fullscreen), so they are real buttons */
 .dot {
@@ -362,7 +387,13 @@ a:hover { text-shadow: 0 0 6px rgba(91, 231, 233, .5); }
 @media (max-width: 700px) {
   .topnav { padding: .15rem .9rem; }
   .topnav a { padding: .55rem .3rem; }
-  .window { width: 100%; margin: 0; border: none; border-radius: 0; box-shadow: none; }
+  /* !important: a phone rotation must beat whatever a desktop drag left inline */
+  .window {
+    left: 0 !important; top: 0 !important;
+    width: 100% !important; height: 100% !important;
+    border: none; border-radius: 0; box-shadow: none;
+  }
+  .win-resize { display: none; }
   .deskfoot { display: none; }
 }
 

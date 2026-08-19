@@ -824,12 +824,119 @@ document.querySelectorAll(".topnav a").forEach((a) => {
 /* close tries to exit, minimize clears the screen: both answer in-session */
 $("#btn-close").addEventListener("click", () => enqueue("exit", false));
 $("#btn-min").addEventListener("click", () => enqueue("clear", false));
-$("#btn-max").addEventListener("click", () => {
-  // maximize means it: real fullscreen (where the platform allows it)
-  if (document.fullscreenElement) document.exitFullscreen();
-  else if (document.documentElement.requestFullscreen) {
-    document.documentElement.requestFullscreen().catch(() => {});
+$("#btn-max").addEventListener("click", () => setMaximized(!maximized));
+
+/* ---------- Window management: drag, resize, maximize ----------
+   Big screens only: on phones the window is pinned full-bleed by CSS.
+   All geometry is desk-relative; the first interaction materialises the
+   CSS default position into inline px and everything works from there. */
+const desk     = $("#desk");
+const titlebar = document.querySelector(".titlebar");
+const grip     = document.querySelector(".win-resize");
+const FLOATING = window.matchMedia("(min-width: 701px)");
+const clampNum = (v, lo, hi) => Math.max(lo, Math.min(hi, v));
+
+let maximized = false;
+let prevGeom  = null; // where the window goes back to after a maximize
+
+function winRect() {
+  const d = desk.getBoundingClientRect();
+  const w = windowEl.getBoundingClientRect();
+  return { left: w.left - d.left, top: w.top - d.top,
+           width: w.width, height: w.height, dw: d.width, dh: d.height };
+}
+function applyGeom(g) {
+  windowEl.style.left   = Math.round(g.left) + "px";
+  windowEl.style.top    = Math.round(g.top) + "px";
+  windowEl.style.width  = Math.round(g.width) + "px";
+  windowEl.style.height = Math.round(g.height) + "px";
+}
+/* the window stays fully on the desk, and never smaller than usable */
+function clampGeom(g) {
+  g.width  = clampNum(g.width, Math.min(420, g.dw), g.dw);
+  g.height = clampNum(g.height, Math.min(320, g.dh), g.dh);
+  g.left   = clampNum(g.left, 0, g.dw - g.width);
+  g.top    = clampNum(g.top, 0, g.dh - g.height);
+  return g;
+}
+function deskPoint(e) {
+  const d = desk.getBoundingClientRect();
+  return { x: e.clientX - d.left, y: e.clientY - d.top };
+}
+
+function setMaximized(on) {
+  if (!FLOATING.matches || on === maximized) return;
+  const g = winRect();
+  if (on) {
+    prevGeom = g;
+    applyGeom({ left: 0, top: 0, width: g.dw, height: g.dh });
+  } else if (prevGeom) {
+    applyGeom(clampGeom({ ...prevGeom, dw: g.dw, dh: g.dh }));
   }
+  maximized = on;
+  windowEl.classList.toggle("maximized", on);
+}
+
+let drag = null;
+titlebar.addEventListener("pointerdown", (e) => {
+  if (!FLOATING.matches || e.button !== 0 || e.target.closest("button")) return;
+  let g = winRect();
+  if (maximized) {
+    // dragging a maximized window peels it off under the cursor, like a WM
+    const frac = deskPoint(e).x / g.dw;
+    const pg = clampGeom({ ...prevGeom, dw: g.dw, dh: g.dh });
+    pg.left = clampNum(deskPoint(e).x - pg.width * frac, 0, g.dw - pg.width);
+    pg.top  = 0;
+    applyGeom(pg);
+    maximized = false;
+    windowEl.classList.remove("maximized");
+    g = winRect();
+  }
+  const p = deskPoint(e);
+  drag = { dx: p.x - g.left, dy: p.y - g.top };
+  titlebar.setPointerCapture(e.pointerId);
+});
+titlebar.addEventListener("pointermove", (e) => {
+  if (!drag) return;
+  const p = deskPoint(e);
+  applyGeom(clampGeom({ ...winRect(), left: p.x - drag.dx, top: p.y - drag.dy }));
+});
+["pointerup", "pointercancel"].forEach((ev) =>
+  titlebar.addEventListener(ev, () => { drag = null; })
+);
+/* double-click the bar: same as the green button */
+titlebar.addEventListener("dblclick", (e) => {
+  if (e.target.closest("button")) return;
+  setMaximized(!maximized);
+});
+
+let resizing = null;
+grip.addEventListener("pointerdown", (e) => {
+  if (!FLOATING.matches || e.button !== 0) return;
+  const g = winRect();
+  const p = deskPoint(e);
+  resizing = { w: g.width, h: g.height, x: p.x, y: p.y };
+  grip.setPointerCapture(e.pointerId);
+});
+grip.addEventListener("pointermove", (e) => {
+  if (!resizing) return;
+  if (maximized) { maximized = false; windowEl.classList.remove("maximized"); }
+  const g = winRect();
+  const p = deskPoint(e);
+  applyGeom(clampGeom({ ...g,
+    width:  resizing.w + (p.x - resizing.x),
+    height: resizing.h + (p.y - resizing.y) }));
+});
+["pointerup", "pointercancel"].forEach((ev) =>
+  grip.addEventListener(ev, () => { resizing = null; })
+);
+
+/* a browser resize must not strand the window outside the desk */
+window.addEventListener("resize", () => {
+  if (!FLOATING.matches) return;
+  const g = winRect();
+  if (maximized) applyGeom({ left: 0, top: 0, width: g.dw, height: g.dh });
+  else if (windowEl.style.left) applyGeom(clampGeom(g));
 });
 
 /* ---------- Go ---------- */
