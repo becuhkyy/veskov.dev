@@ -6,7 +6,7 @@
 <title>Vesko Vasilev · Full-Stack Engineer</title>
 <meta name="description" content="Vesko Vasilev - full-stack engineer (TypeScript, Node.js, React) with 12 years of hosting-infrastructure background. Terminal-style personal site, zero dependencies.">
 <link rel="canonical" href="https://veskov.dev/">
-<meta name="theme-color" content="#0b0f0b">
+<meta name="theme-color" content="#070a07">
 
 <!-- Open Graph -->
 <meta property="og:type" content="website">
@@ -27,6 +27,8 @@
 
 <link rel="stylesheet" href="fonts/fonts.css">
 <link rel="stylesheet" href="style.css">
+<!-- JS off: the boot overlay would sit opaque over the noscript card -->
+<noscript><link rel="stylesheet" href="noscript.css"></noscript>
 <link rel="icon" href="/favicon.svg" type="image/svg+xml">
 <link rel="icon" href="/favicon-96.png" sizes="96x96" type="image/png">
 <link rel="apple-touch-icon" href="/apple-touch-icon.png">
@@ -53,72 +55,85 @@
 </head>
 <body>
 
-<!-- CRT overlays -->
-<div class="scanlines" aria-hidden="true"></div>
-<div class="vignette" aria-hidden="true"></div>
+<!-- the desktop holds exactly one window -->
+<div class="window" id="window">
 
-<!-- Boot sequence overlay -->
-<div id="boot" aria-hidden="true"><pre id="boot-log"></pre></div>
+  <!-- CRT overlays: the effect belongs to the screen, not the desktop -->
+  <div class="scanlines" aria-hidden="true"></div>
+  <div class="vignette" aria-hidden="true"></div>
 
-<!-- Top bar -->
-<header class="topbar">
-  <!-- the bar spans the window, its contents stay on the 880px column -->
-  <div class="topbar-inner">
-    <span class="dot red"></span><span class="dot yellow"></span><span class="dot green"></span>
-    <span class="topbar-title">guest@veskov.dev: ~</span>
+  <!-- Boot sequence overlay -->
+  <div id="boot" aria-hidden="true"><pre id="boot-log"></pre></div>
+
+  <!-- Window chrome: a title bar whose buttons actually do something,
+       then the nav as the window's menu bar -->
+  <header class="chrome">
+    <div class="titlebar">
+      <div class="titlebar-btns">
+        <button type="button" class="dot red" id="btn-close" aria-label="close the window (it declines)"></button>
+        <button type="button" class="dot yellow" id="btn-min" aria-label="clear the screen"></button>
+        <button type="button" class="dot green" id="btn-max" aria-label="toggle fullscreen"></button>
+      </div>
+      <span class="titlebar-title">guest@veskov.dev: ~</span>
+      <div class="titlebar-spacer" aria-hidden="true"></div>
+    </div>
     <nav class="topnav" aria-label="sections">
       <a href="#" data-cmd="cat ~/about.md">~/about</a>
       <a href="#" data-cmd="cat ~/experience.md">~/work</a>
       <a href="#" data-cmd="ls -la ~/projects/">~/projects</a>
       <a href="#" data-cmd="cat ~/contacts.md">~/contact</a>
     </nav>
+  </header>
+
+  <!-- the screen: the only thing that scrolls -->
+  <div class="viewport" id="viewport">
+    <main id="term">
+      <h1 class="visually-hidden">Vesko Vasilev - full-stack engineer</h1>
+
+      <!-- no JS, no session: say the same things in plain HTML -->
+      <noscript>
+        <section class="noscript-card">
+          <p class="ns-name">vesko_vasilev</p>
+          <p class="dim">full-stack engineer: typescript &middot; node &middot; react &middot; Troyan, Bulgaria</p>
+          <p>
+            I build the unglamorous half well: typed APIs, migrations that survive a rollback,
+            deploys nobody has to stay awake for. The clearest example is the Bulgarian
+            Volleyball Federation's competition platform, shipped end to end: schedule
+            generation, match documents, a live-scoring PWA referees use court-side, and the
+            federation's electronic licence registry, in production since 2025. Currently
+            interviewing for senior full-stack roles, remote or EU.
+          </p>
+          <p>
+            <a href="mailto:payvesipal@gmail.com">payvesipal@gmail.com</a><br>
+            <a href="https://github.com/becuhkyy">github.com/becuhkyy</a><br>
+            <a href="https://www.linkedin.com/in/vesko-vasilev-a49795127/">linkedin.com/in/vesko-vasilev</a>
+          </p>
+          <p>
+            The resume, same content in two formats:
+            <a href="/cv.pdf">cv.pdf</a> for humans and their ATS,
+            <a href="/cv.txt">cv.txt</a> for terminals.
+          </p>
+          <p class="dim">The terminal needs JavaScript. The facts do not.</p>
+        </section>
+      </noscript>
+
+      <!-- one continuous session: typed commands + instant output land here -->
+      <div id="history" role="log" aria-label="terminal session"></div>
+
+      <!-- the live prompt -->
+      <form id="prompt-form" autocomplete="off">
+        <label for="prompt-input"><span class="prompt">guest@veskov.dev</span><span class="path">:~$</span></label>
+        <input id="prompt-input" type="text" spellcheck="false" autocomplete="off">
+        <span class="cursor" aria-hidden="true"></span>
+      </form>
+
+      <footer>
+        <span class="dim">© <span id="year">2026</span> <span id="footer-handle">veskov</span> · served from a small hetzner box · uptime: aggressively boring</span>
+      </footer>
+    </main>
   </div>
-</header>
 
-<main id="term">
-  <h1 class="visually-hidden">Vesko Vasilev - full-stack engineer</h1>
-
-  <!-- no JS, no session: say the same things in plain HTML -->
-  <noscript>
-    <section class="noscript-card">
-      <p class="ns-name">vesko vasilev</p>
-      <p class="dim">full-stack engineer: typescript &middot; node &middot; react &middot; Troyan, Bulgaria</p>
-      <p>
-        I build the unglamorous half well: typed APIs, migrations that survive a rollback,
-        deploys nobody has to stay awake for. The clearest example is the Bulgarian
-        Volleyball Federation's competition platform, shipped end to end: schedule
-        generation, match documents, a live-scoring PWA referees use court-side, and the
-        federation's electronic licence registry, in production since 2025. Currently
-        interviewing for senior full-stack roles, remote or EU.
-      </p>
-      <p>
-        <a href="mailto:payvesipal@gmail.com">payvesipal@gmail.com</a><br>
-        <a href="https://github.com/becuhkyy">github.com/becuhkyy</a><br>
-        <a href="https://www.linkedin.com/in/vesko-vasilev-a49795127/">linkedin.com/in/vesko-vasilev</a>
-      </p>
-      <p>
-        The resume, same content in two formats:
-        <a href="/cv.pdf">cv.pdf</a> for humans and their ATS,
-        <a href="/cv.txt">cv.txt</a> for terminals.
-      </p>
-      <p class="dim">The terminal needs JavaScript. The facts do not.</p>
-    </section>
-  </noscript>
-
-  <!-- one continuous session: typed commands + instant output land here -->
-  <div id="history" role="log" aria-label="terminal session"></div>
-
-  <!-- the live prompt -->
-  <form id="prompt-form" autocomplete="off">
-    <label for="prompt-input"><span class="prompt">guest@veskov.dev</span><span class="path">:~$</span></label>
-    <input id="prompt-input" type="text" spellcheck="false" autocomplete="off">
-    <span class="cursor" aria-hidden="true"></span>
-  </form>
-
-  <footer>
-    <span class="dim">© <span id="year"></span> <span id="footer-handle"></span> · served from a small hetzner box · uptime: aggressively boring</span>
-  </footer>
-</main>
+</div>
 
 <script src="main.js"></script>
 </body>

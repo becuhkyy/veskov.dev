@@ -1,0 +1,3 @@
+/* Loaded only when JavaScript is off. The boot overlay would otherwise sit
+   opaque over the noscript card, and a prompt nothing executes is a decoy. */
+#boot, #prompt-form { display: none; }

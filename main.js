@@ -4,7 +4,7 @@
    ★  EDIT THIS BLOCK: everything personal lives here.  ★
    ============================================================ */
 const CONFIG = {
-  name:    "vesko vasilev",
+  name:    "vesko_vasilev",
   handle:  "veskov",
   role:    "full-stack engineer: typescript · node · react",
   location: "Troyan, Bulgaria",
@@ -168,8 +168,10 @@ const sleep = (ms) => {
 };
 function wakeAll() { [...waiting].forEach((wake) => wake()); }
 
-const history = $("#history");
-const input   = $("#prompt-input");
+const history  = $("#history");
+const input    = $("#prompt-input");
+const viewport = $("#viewport");
+const windowEl = $("#window");
 
 /* the block cursor lives after the input, so the input is only ever as wide as
    its own text; every write to input.value goes through setInput to keep them
@@ -192,19 +194,19 @@ let stickToBottom = true;
 let introOverflow = false;      // the intro has grown past one screen
 let readerScrolled = false;     // the visitor has scrolled on purpose
 function nearBottom() {
-  return window.innerHeight + window.scrollY >= document.body.scrollHeight - SCROLL_SLACK;
+  return viewport.scrollTop + viewport.clientHeight >= viewport.scrollHeight - SCROLL_SLACK;
 }
-window.addEventListener("scroll", () => { stickToBottom = nearBottom(); }, { passive: true });
+viewport.addEventListener("scroll", () => { stickToBottom = nearBottom(); }, { passive: true });
 ["wheel", "touchmove"].forEach((ev) =>
   window.addEventListener(ev, () => { readerScrolled = true; }, { passive: true })
 );
 
 function scrollBottom() {
-  if (introRunning && document.body.scrollHeight > window.innerHeight + 4) {
+  if (introRunning && viewport.scrollHeight > viewport.clientHeight + 4) {
     if (!introOverflow) { introOverflow = true; stickToBottom = false; }
     if (!readerScrolled) return; // they are reading from the top: do not drag them
   }
-  if (stickToBottom) window.scrollTo(0, document.body.scrollHeight);
+  if (stickToBottom) viewport.scrollTo(0, viewport.scrollHeight);
 }
 
 /* ---------- Boot sequence ---------- */
@@ -348,7 +350,7 @@ function commit(cmd) {
     out = textOut((cmd.trim().split(/\s+/)[0] || "command") + ": internal error", "err");
   }
   if (out) {
-    out.dataset.cmd = cmd; // lets the top bar find a section it already printed
+    out.dataset.cmd = cmd; // lets the menu bar find a section it already printed
     history.appendChild(out);
   }
   cmdLog.push(cmd); // auto-typed and nav lines included, so ArrowUp recalls them
@@ -362,17 +364,10 @@ let skipHint = null;
 
 function showSkipHint() {
   if (skipHint) return;
-  skipHint = el("button", null, "esc: skip intro");
+  skipHint = el("button", "skip-hint", "esc: skip intro");
   skipHint.type = "button";
-  skipHint.style.cssText = [
-    "position:fixed", "right:14px", "bottom:12px", "z-index:60",
-    "font:inherit", "font-size:12px", "line-height:1",
-    "color:var(--dim)", "background:transparent",
-    "border:1px solid currentColor", "border-radius:3px",
-    "padding:8px 10px", "opacity:.75", "cursor:pointer",
-  ].join(";");
   skipHint.addEventListener("click", skipIntro);
-  document.body.appendChild(skipHint);
+  windowEl.appendChild(skipHint);
 }
 
 function hideSkipHint() {
@@ -511,7 +506,7 @@ function statusOut() {
   block.tabIndex = 0;
   block.setAttribute("role", "group");
   block.setAttribute("aria-label", "systemctl status output");
-  const first = CONFIG.name.split(" ")[0];
+  const first = CONFIG.name.split(/[\s_-]/)[0];
   const title = CONFIG.role.split(":")[0].trim();
   const s = CONFIG.status;
   const availability = CONFIG.contacts.status || "status unknown";
@@ -627,7 +622,7 @@ function helpOut() {
     row.appendChild(el("span", "help-desc", desc));
     o.appendChild(row);
   });
-  o.appendChild(el("div", "help-tip", "tip: the links in the top bar type these for you · tab completes"));
+  o.appendChild(el("div", "help-tip", "tip: the menu bar types these for you · tab completes"));
   return o;
 }
 
@@ -820,8 +815,20 @@ document.querySelectorAll(".topnav a").forEach((a) => {
     if (!seen) { enqueue(cmd, true); return; }
     const prev = seen.previousElementSibling;
     const target = prev && prev.classList.contains("h-line") ? prev : seen;
-    target.scrollIntoView({ behavior: "smooth", block: "start" });
+    target.scrollIntoView({ behavior: SNAP ? "auto" : "smooth", block: "start" });
   });
+});
+
+/* ---------- Titlebar buttons ---------- */
+/* close tries to exit, minimize clears the screen: both answer in-session */
+$("#btn-close").addEventListener("click", () => enqueue("exit", false));
+$("#btn-min").addEventListener("click", () => enqueue("clear", false));
+$("#btn-max").addEventListener("click", () => {
+  // maximize means it: real fullscreen (where the platform allows it)
+  if (document.fullscreenElement) document.exitFullscreen();
+  else if (document.documentElement.requestFullscreen) {
+    document.documentElement.requestFullscreen().catch(() => {});
+  }
 });
 
 /* ---------- Go ---------- */
