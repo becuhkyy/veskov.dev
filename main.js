@@ -17,15 +17,16 @@ const CONFIG = {
     "Outside the day job: GoMint, an NFT platform built around custodial key control, a bid marketplace and IPFS storage, took 2nd place at the 2024 Hedera hackathon. I also mentor student teams shipping their first product at Teenovator.",
     "Currently interviewing. If you are hiring senior full-stack engineers, email is the fast path; the rest of this terminal is the scenic route.",
   ],
-  /* grouped the way the cv groups them; the hosting row is the 12-year backstory */
+  /* precise taxonomy: virtualization means hypervisors, web servers live with linux */
   skills: [
-    { group: "languages", items: ["typescript", "c# / .net"] },
-    { group: "backend",   items: ["node.js", "nestjs", "graphql", "kafka"] },
-    { group: "frontend",  items: ["react 19", "next.js", "tanstack", "shadcn"] },
-    { group: "data",      items: ["postgresql", "mssql", "prisma"] },
-    { group: "infra",     items: ["linux", "docker", "kubernetes", "nginx", "apache"] },
-    { group: "hosting",   items: ["kvm", "proxmox", "incus", "openvz", "whm/cpanel"] },
-    { group: "tooling",   items: ["playwright", "github actions"] },
+    { group: "languages",      items: ["typescript", "c#"] },
+    { group: "frontend",       items: ["react 19", "next.js", "tanstack", "shadcn"] },
+    { group: "backend",        items: ["node.js", "nestjs", ".net", "graphql", "kafka"] },
+    { group: "databases",      items: ["postgresql", "mssql", "prisma"] },
+    { group: "devops",         items: ["docker", "kubernetes", "github actions"] },
+    { group: "virtualization", items: ["kvm", "proxmox", "incus", "openvz"] },
+    { group: "systems",        items: ["linux", "nginx", "apache", "whm/cpanel"] },
+    { group: "tooling",        items: ["vitest", "git", "neovim", "bash", "terraform", "ansible"] },
   ],
   /* the ones the job hunt runs on: rendered with an amber accent */
   coreSkills: ["typescript", "node.js", "react 19"],

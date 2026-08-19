@@ -256,7 +256,7 @@ a:hover { text-shadow: 0 0 6px rgba(91, 231, 233, .5); }
 /* ---------- about output ---------- */
 .skill-list { display: flex; flex-direction: column; gap: .45rem; margin: .3rem 0 .5rem; white-space: normal; }
 .skill-group { display: flex; align-items: baseline; gap: .7rem; }
-.skill-label { flex: 0 0 9ch; font-size: 13px; }
+.skill-label { flex: 0 0 14ch; font-size: 13px; }
 .skill-tags { display: flex; flex-wrap: wrap; gap: .4rem; }
 .tag {
   border: 1px solid var(--border); border-radius: 4px;
