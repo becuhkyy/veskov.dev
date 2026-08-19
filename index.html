@@ -55,7 +55,14 @@
 </head>
 <body>
 
-<!-- the desktop holds exactly one window -->
+<!-- the desktop: a nav bar, one window, a caption below -->
+<nav class="topnav" aria-label="sections">
+  <a href="#" data-cmd="cat ~/about.md">~/about</a>
+  <a href="#" data-cmd="cat ~/experience.md">~/work</a>
+  <a href="#" data-cmd="ls -la ~/projects/">~/projects</a>
+  <a href="#" data-cmd="cat ~/contacts.md">~/contact</a>
+</nav>
+
 <div class="window" id="window">
 
   <!-- CRT overlays: the effect belongs to the screen, not the desktop -->
@@ -65,24 +72,15 @@
   <!-- Boot sequence overlay -->
   <div id="boot" aria-hidden="true"><pre id="boot-log"></pre></div>
 
-  <!-- Window chrome: a title bar whose buttons actually do something,
-       then the nav as the window's menu bar -->
-  <header class="chrome">
-    <div class="titlebar">
-      <div class="titlebar-btns">
-        <button type="button" class="dot red" id="btn-close" aria-label="close the window (it declines)"></button>
-        <button type="button" class="dot yellow" id="btn-min" aria-label="clear the screen"></button>
-        <button type="button" class="dot green" id="btn-max" aria-label="toggle fullscreen"></button>
-      </div>
-      <span class="titlebar-title">guest@veskov.dev: ~</span>
-      <div class="titlebar-spacer" aria-hidden="true"></div>
+  <!-- Window chrome: a title bar whose buttons actually do something -->
+  <header class="titlebar">
+    <div class="titlebar-btns">
+      <button type="button" class="dot red" id="btn-close" aria-label="close the window (it declines)"></button>
+      <button type="button" class="dot yellow" id="btn-min" aria-label="clear the screen"></button>
+      <button type="button" class="dot green" id="btn-max" aria-label="toggle fullscreen"></button>
     </div>
-    <nav class="topnav" aria-label="sections">
-      <a href="#" data-cmd="cat ~/about.md">~/about</a>
-      <a href="#" data-cmd="cat ~/experience.md">~/work</a>
-      <a href="#" data-cmd="ls -la ~/projects/">~/projects</a>
-      <a href="#" data-cmd="cat ~/contacts.md">~/contact</a>
-    </nav>
+    <span class="titlebar-title">guest@veskov.dev: ~</span>
+    <div class="titlebar-spacer" aria-hidden="true"></div>
   </header>
 
   <!-- the screen: the only thing that scrolls -->
@@ -126,14 +124,14 @@
         <input id="prompt-input" type="text" spellcheck="false" autocomplete="off">
         <span class="cursor" aria-hidden="true"></span>
       </form>
-
-      <footer>
-        <span class="dim">© <span id="year">2026</span> <span id="footer-handle">veskov</span> · served from a small hetzner box · uptime: aggressively boring</span>
-      </footer>
     </main>
   </div>
 
 </div>
+
+<footer class="deskfoot">
+  <span class="dim">© <span id="year">2026</span> <span id="footer-handle">veskov</span> · served from a small hetzner box · uptime: aggressively boring</span>
+</footer>
 
 <script src="main.js"></script>
 </body>

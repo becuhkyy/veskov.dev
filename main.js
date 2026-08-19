@@ -220,7 +220,8 @@ const BOOT_LINES = [
 ];
 /* the overlay is opaque, so nothing behind it should be reachable by Tab */
 function setBehindInert(on) {
-  [document.querySelector("main"), document.querySelector("header")].forEach((n) => {
+  [document.querySelector("main"), document.querySelector("header"),
+   document.querySelector(".topnav")].forEach((n) => {
     if (!n) return;
     if (on) n.setAttribute("inert", "");
     else n.removeAttribute("inert");
@@ -350,7 +351,7 @@ function commit(cmd) {
     out = textOut((cmd.trim().split(/\s+/)[0] || "command") + ": internal error", "err");
   }
   if (out) {
-    out.dataset.cmd = cmd; // lets the menu bar find a section it already printed
+    out.dataset.cmd = cmd; // lets the nav bar find a section it already printed
     history.appendChild(out);
   }
   cmdLog.push(cmd); // auto-typed and nav lines included, so ArrowUp recalls them
@@ -622,7 +623,7 @@ function helpOut() {
     row.appendChild(el("span", "help-desc", desc));
     o.appendChild(row);
   });
-  o.appendChild(el("div", "help-tip", "tip: the menu bar types these for you · tab completes"));
+  o.appendChild(el("div", "help-tip", "tip: the nav bar up top types these for you · tab completes"));
   return o;
 }
 

@@ -13,11 +13,12 @@ and `help` run automatically, in that order, with fast, irregular, human-like
 typing (occasional hesitation and typo-and-correct). Output renders instantly.
 Then the prompt is handed to the visitor.
 
-The page is drawn as a terminal window on a desktop: title bar, menu bar, and a
-session that scrolls inside the window. The three title-bar buttons work, for a
-terminal's idea of work: close runs `exit`, minimize runs `clear`, maximize goes
-fullscreen. The menu bar links (`~/about`, `~/work`, `~/projects`, `~/contact`)
-type their own commands into the session. Everything the visitor types at the prompt is answered
+The page is drawn as a desktop: a nav bar on top, one terminal window under it
+(the session scrolls inside the window), and the copyright line as a caption
+below. The three title-bar buttons work, for a terminal's idea of work: close
+runs `exit`, minimize runs `clear`, maximize goes fullscreen. The nav links
+(`~/about`, `~/work`, `~/projects`, `~/contact`) type their own commands into
+the session. Everything the visitor types at the prompt is answered
 too, so try `cv`, `status`, `sudo`, `ping`, `ls`, `work`, `projects`, `clear`.
 Arrow-up/down cycles history; Tab completes commands and the filenames `cat`
 takes, and a second Tab on the same line lists the candidates.
