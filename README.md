@@ -7,7 +7,9 @@ Hosted on a Hetzner box at [veskov.dev](https://veskov.dev).
 
 ## How it works
 
-After a short boot sequence, the site types itself: `whoami`, `cat ~/tagline.txt`,
+The browser boots the OS first: the boot log plays on a black screen, the
+desktop appears, and the terminal window opens with a pop. Then the site types
+itself: `whoami`, `cat ~/tagline.txt`,
 `cat ~/about.md`, `cat ~/experience.md`, `ls -la ~/projects/`, `cat ~/contacts.md`
 and `help` run automatically, in that order, with fast, irregular, human-like
 typing (occasional hesitation and typo-and-correct). Output renders instantly.

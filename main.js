@@ -214,6 +214,7 @@ const BOOT_LINES = [
   "[ OK ] veskov.dev kernel 6.9.0 loading…",
   "[ OK ] mounting /dev/curiosity",
   "[ OK ] starting apache2 … already running (other tenants undisturbed)",
+  "[ OK ] starting window manager … one window is enough",
   "[ OK ] establishing session for guest",
   "",
   "welcome to veskov.dev · last login: just now",
@@ -322,7 +323,7 @@ async function pump() {
       if (typed) { setInput(""); await typeIntoInput(cmd); }
       commit(cmd);
       // a beat between auto-typed lines only; a queued visitor line gets none
-      if (typed && pending.length) await sleep(280 + Math.random() * 320);
+      if (typed && pending.length) await sleep(650 + Math.random() * 450);
     }
   } finally {
     busy = false;
@@ -981,9 +982,16 @@ const DEEP_LINKS = {
 };
 const deepLink = DEEP_LINKS[(PARAMS.get("cmd") || "").trim().toLowerCase()];
 
+function openWindow() {
+  windowEl.classList.remove("pre-open");
+}
+
 async function runSession() {
   introRunning = true;
   await boot();
+  await sleep(250);  // the black screen lifts, the desktop shows
+  openWindow();
+  await sleep(700);  // the window lands before anyone types in it
   if (!SNAP && !skipping) showSkipHint();
   AUTO_SEQUENCE.forEach((cmd) => enqueue(cmd, true));
   await queueDone;
@@ -996,12 +1004,14 @@ async function runSession() {
 async function runDeepLink(cmd) {
   skipping = true; // nothing to watch, the visitor asked for a specific line
   await boot();
+  openWindow();
   skipping = false;
   if (cmd !== "whoami") commit("whoami");
   commit(cmd);
   input.focus({ preventScroll: true });
 }
 
+windowEl.classList.add("pre-open");
 setBehindInert(true);
 if (deepLink) runDeepLink(deepLink);
 else runSession();

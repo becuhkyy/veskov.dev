@@ -55,6 +55,9 @@
 </head>
 <body>
 
+<!-- Boot overlay: the browser boots the OS before the desktop exists -->
+<div id="boot" aria-hidden="true"><pre id="boot-log"></pre></div>
+
 <!-- the desktop: a nav bar, one window, a caption below -->
 <nav class="topnav" aria-label="sections">
   <span class="nav-brand">veskov.dev</span>
@@ -70,9 +73,6 @@
   <!-- CRT overlays: the effect belongs to the screen, not the desktop -->
   <div class="scanlines" aria-hidden="true"></div>
   <div class="vignette" aria-hidden="true"></div>
-
-  <!-- Boot sequence overlay -->
-  <div id="boot" aria-hidden="true"><pre id="boot-log"></pre></div>
 
   <!-- Window chrome: a title bar whose buttons actually do something -->
   <header class="titlebar">
