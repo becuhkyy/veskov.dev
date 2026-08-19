@@ -1,0 +1,145 @@
+================================================================================
+
+  __     __ _____  ____   _  __  ___
+  \ \   / /| ____|/ ___| | |/ / / _ \
+   \ \ / / |  _|  \___ \ | ' / | | | |
+    \ V /  | |___  ___) || . \ | |_| |
+     \_/   |_____||____/ |_|\_\ \___/
+
+  __     __     _     ____   ___  _      _____ __     __
+  \ \   / /    / \   / ___| |_ _|| |    | ____|\ \   / /
+   \ \ / /    / _ \  \___ \  | | | |    |  _|   \ \ / /
+    \ V /    / ___ \  ___) | | | | |___ | |___   \ V /
+     \_/    /_/   \_\|____/ |___||_____||_____|   \_/
+
+================================================================================
+
+  full-stack engineer :: typescript / node / react              Troyan, Bulgaria
+  open to senior full-stack roles, remote or EU             payvesipal@gmail.com
+
+  this file is what `curl veskov.dev` returns.
+  the interactive version lives at https://veskov.dev
+
+================================================================================
+
+SUMMARY ------------------------------------------------------------------------
+
+      Twelve years keeping other people's servers alive, now building the
+      software that runs on them. I moved from running production infrastructure
+      to writing production software, and the instincts came with me: typed
+      APIs, migrations that survive a rollback, deploys nobody has to stay awake
+      for.
+
+      I designed and shipped the Bulgarian Volleyball Federation's competition
+      platform end to end: schedule generation, match documents, a live-scoring
+      PWA referees use court-side, and the federation's electronic licence
+      registry, in production since 2025.
+
+EXPERIENCE ---------------------------------------------------------------------
+
+  Senior System Administrator                                Jan 2014 - Aug 2026
+  Nodisto IT, LLC (VPSDime / Backupsy / Winity)                           remote
+      Ran the infrastructure behind several VPS brands: fleet monitoring,
+      incident response under time pressure, abuse handling, and internal
+      tooling that automated the recurring work away.
+
+  Co-Founder                                                         2016 - 2023
+  ImpactHost Ltd.                                                       Bulgaria
+      Co-owned a hosting company and built the customer-facing order forms and
+      platform frontend.
+
+  Chief Operations Officer                                   Nov 2013 - Aug 2022
+  AlphaVPS (DA International Group Ltd.)                                  remote
+      Joined at inception and helped grow the company from zero to
+      infrastructure on multiple continents. Led development of the internal
+      tools that let a small team run a growing platform, and owned onboarding,
+      processes, and daily operations.
+
+  Regional Coordinator                                       Sep 2023 - May 2025
+  Bulgarian Volleyball Federation, Region Hemus                         Bulgaria
+      Coordinated regional competitions. Running tournaments on paper and
+      spreadsheets is what led directly to building the federation's software.
+
+  President & Manager                                         Oct 2018 - present
+  VC Troyan Volley (part-time)                                            Troyan
+      Run a non-profit club with 110+ athletes competing in 12 of 14 national
+      age groups: funding, logistics, and a full season calendar.
+
+PROJECTS -----------------------------------------------------------------------
+
+  bvf-platform
+      The Bulgarian Volleyball Federation's competition system, end to end. It
+      handles Berger schedule generation, championship and team management, and
+      match document generation. Referees run the live-scoring PWA court-side,
+      on a dependency-free, offline-tolerant scoring engine.
+      stack   typescript, strapi 5, react 19, pwa, playwright
+      source  https://github.com/becuhkyy/bvf-livescore
+      note    live-scoring source is public; the rest is private
+
+  bvf-registry
+      The federation's electronic licence system for clubs, players, coaches,
+      licences, transfers, halls and season applications, feeding both the admin
+      SPA and the public register on bvf.bg. In production since 2025.
+      stack   c# / .net 10, ef core, sql server, react 19, tanstack query
+      live    https://db.bvf.bg
+      note    private repo, client system
+
+  pushdb
+      Database backup orchestration SaaS, born from running backup-heavy hosting
+      infrastructure for a decade. Monorepo with a web app, a scheduler and a
+      worker, containerised and deployed to k8s.
+      stack   typescript, tanstack start, postgres, docker, kubernetes
+      note    private repo, work in progress
+
+  notabene-suite
+      Systems for the Nota Bene pharmacy chain and its medical laboratory. The
+      core is an order and patient journal, plus a cash-flow book that spans
+      registers, safes and transfers across shops. Underneath it, a service
+      exposes the legacy Firebird databases over a clean REST API, and a
+      stubborn Python bot retries a flaky national export until it gets a
+      complete one.
+      stack   next.js, nestjs, prisma, postgresql, firebird, python
+      note    private repos, client work
+
+  nestjs-portfolio
+      A set of services built to production patterns rather than tutorial
+      patterns: reservations with payments, task management, a GraphQL API, and
+      an AI microservice, all with DI, tests and containers throughout.
+      stack   typescript, nestjs, graphql, mongodb, next.js
+      source  https://github.com/becuhkyy?tab=repositories&q=nestjs
+
+SKILLS -------------------------------------------------------------------------
+
+  languages   TypeScript, JavaScript, C#, Python
+  backend     Node.js, NestJS, Strapi, GraphQL, REST, .NET
+  frontend    React 19, Next.js, Tailwind, PWA
+  data        PostgreSQL, MSSQL, SQLite, MongoDB
+  infra       Linux (expert), KVM, Docker, Kubernetes
+  tooling     Playwright, Vitest, Git, GitHub Actions
+
+COMMUNITY AND AWARDS -----------------------------------------------------------
+
+  2nd place, Hedera Hackathon 2024
+      GoMint, an NFT platform built around custodial key control, a bid
+      marketplace and IPFS storage.
+
+  Mentor, Teenovator
+      Mentoring student teams shipping their first product.
+
+LANGUAGES ----------------------------------------------------------------------
+
+  bulgarian   native
+  english     full professional proficiency
+
+CONTACT ------------------------------------------------------------------------
+
+  email       payvesipal@gmail.com
+  github      github.com/becuhkyy
+  linkedin    linkedin.com/in/vesko-vasilev-a49795127
+  site        https://veskov.dev
+  status      open to senior full-stack roles, remote or EU
+
+================================================================================
+  kept in sync with the CONFIG block that drives https://veskov.dev
+  printable version: https://veskov.dev/cv.pdf
+================================================================================

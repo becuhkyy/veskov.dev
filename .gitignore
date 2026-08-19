@@ -1,0 +1,8 @@
+.playwright-mcp/
+*.png
+!/og-image.png
+!/favicon-96.png
+!/apple-touch-icon.png
+
+# internal review notes stay local, they must never ship again
+REVIEW.md

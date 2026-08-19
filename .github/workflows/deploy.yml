@@ -1,0 +1,76 @@
+name: deploy
+
+# Every push to main that touches a served file lands on the Hetzner box.
+# The key behind secrets.SSH_DEPLOY_KEY is jailed server-side with rrsync to
+# /var/www/veskov.dev (write-only deploy, nothing else) - see docs/deploy-provisioning.md
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - index.html
+      - style.css
+      - main.js
+      - cv.txt
+      - cv.pdf
+      - fonts/**
+      - og-image.png
+      - favicon.svg
+      - favicon-96.png
+      - apple-touch-icon.png
+      - robots.txt
+      - sitemap.xml
+      - .github/workflows/deploy.yml
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: deploy-production
+  cancel-in-progress: false
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Load the deploy key and pin the host
+        env:
+          SSH_DEPLOY_KEY: ${{ secrets.SSH_DEPLOY_KEY }}
+        run: |
+          mkdir -p ~/.ssh
+          printf '%s\n' "$SSH_DEPLOY_KEY" > ~/.ssh/deploy_key
+          chmod 600 ~/.ssh/deploy_key
+          # host key pinned, not TOFU'd: a MITM gets a refusal, not our files
+          cat > ~/.ssh/known_hosts <<'EOF'
+          159.69.8.29 ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIBgXIrbp3nU6JhO3TyvEjRZeAEvZl0a8Gr6od9hrx44K
+          EOF
+
+      - name: Rsync the static files
+        run: |
+          # the key's forced command is `rrsync /var/www/veskov.dev`, so ':/'
+          # below is the docroot itself; no --delete, .well-known stays untouched
+          rsync -rlptzv --chmod=D755,F644 \
+            -e "ssh -i ~/.ssh/deploy_key -o IdentitiesOnly=yes -o StrictHostKeyChecking=yes" \
+            index.html style.css main.js cv.txt cv.pdf fonts \
+            og-image.png favicon.svg favicon-96.png apple-touch-icon.png \
+            robots.txt sitemap.xml \
+            root@159.69.8.29:/
+
+      - name: Verify the live site serves exactly what we shipped
+        run: |
+          sleep 2
+          for f in index.html style.css main.js cv.txt cv.pdf robots.txt; do
+            live=$(curl -fsS "https://veskov.dev/$f" | sha256sum | cut -d' ' -f1)
+            repo=$(sha256sum "$f" | cut -d' ' -f1)
+            if [ "$live" != "$repo" ]; then
+              echo "::error::$f on veskov.dev does not match the repo after deploy"
+              exit 1
+            fi
+            echo "ok: $f ($live)"
+          done
+          curl -fsS -o /dev/null https://veskov.dev/og-image.png
+          curl -fsS -o /dev/null https://veskov.dev/fonts/jetbrains-700.woff2
+          echo "deploy verified"

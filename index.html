@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Vesko Vasilev · Full-Stack Engineer</title>
+<meta name="description" content="Vesko Vasilev - full-stack engineer (TypeScript, Node.js, React) with 12 years of hosting-infrastructure background. Terminal-style personal site, zero dependencies.">
+<link rel="canonical" href="https://veskov.dev/">
+<meta name="theme-color" content="#0b0f0b">
+
+<!-- Open Graph -->
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://veskov.dev/">
+<meta property="og:site_name" content="veskov.dev">
+<meta property="og:title" content="Vesko Vasilev - Full-Stack Engineer">
+<meta property="og:description" content="Full-stack engineer (TypeScript, Node.js, React) with 12 years of hosting-infrastructure background. Terminal-style personal site, zero dependencies.">
+<meta property="og:image" content="https://veskov.dev/og-image.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="Terminal window on veskov.dev: guest@veskov.dev:~$ whoami">
+
+<!-- Twitter -->
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Vesko Vasilev - Full-Stack Engineer">
+<meta name="twitter:description" content="Full-stack engineer (TypeScript, Node.js, React) with 12 years of hosting-infrastructure background. Terminal-style personal site, zero dependencies.">
+<meta name="twitter:image" content="https://veskov.dev/og-image.png">
+
+<link rel="stylesheet" href="fonts/fonts.css">
+<link rel="stylesheet" href="style.css">
+<link rel="icon" href="/favicon.svg" type="image/svg+xml">
+<link rel="icon" href="/favicon-96.png" sizes="96x96" type="image/png">
+<link rel="apple-touch-icon" href="/apple-touch-icon.png">
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Person",
+  "name": "Vesko Vasilev",
+  "url": "https://veskov.dev/",
+  "jobTitle": "Full-Stack Engineer",
+  "email": "mailto:payvesipal@gmail.com",
+  "address": {
+    "@type": "PostalAddress",
+    "addressLocality": "Troyan",
+    "addressCountry": "BG"
+  },
+  "sameAs": [
+    "https://github.com/becuhkyy",
+    "https://www.linkedin.com/in/vesko-vasilev-a49795127/"
+  ]
+}
+</script>
+</head>
+<body>
+
+<!-- CRT overlays -->
+<div class="scanlines" aria-hidden="true"></div>
+<div class="vignette" aria-hidden="true"></div>
+
+<!-- Boot sequence overlay -->
+<div id="boot" aria-hidden="true"><pre id="boot-log"></pre></div>
+
+<!-- Top bar -->
+<header class="topbar">
+  <!-- the bar spans the window, its contents stay on the 880px column -->
+  <div class="topbar-inner">
+    <span class="dot red"></span><span class="dot yellow"></span><span class="dot green"></span>
+    <span class="topbar-title">guest@veskov.dev: ~</span>
+    <nav class="topnav" aria-label="sections">
+      <a href="#" data-cmd="cat ~/about.md">~/about</a>
+      <a href="#" data-cmd="cat ~/experience.md">~/work</a>
+      <a href="#" data-cmd="ls -la ~/projects/">~/projects</a>
+      <a href="#" data-cmd="cat ~/contacts.md">~/contact</a>
+    </nav>
+  </div>
+</header>
+
+<main id="term">
+  <h1 class="visually-hidden">Vesko Vasilev - full-stack engineer</h1>
+
+  <!-- no JS, no session: say the same things in plain HTML -->
+  <noscript>
+    <section class="noscript-card">
+      <p class="ns-name">vesko vasilev</p>
+      <p class="dim">full-stack engineer: typescript &middot; node &middot; react &middot; Troyan, Bulgaria</p>
+      <p>
+        I build the unglamorous half well: typed APIs, migrations that survive a rollback,
+        deploys nobody has to stay awake for. The clearest example is the Bulgarian
+        Volleyball Federation's competition platform, shipped end to end: schedule
+        generation, match documents, a live-scoring PWA referees use court-side, and the
+        federation's electronic licence registry, in production since 2025. Currently
+        interviewing for senior full-stack roles, remote or EU.
+      </p>
+      <p>
+        <a href="mailto:payvesipal@gmail.com">payvesipal@gmail.com</a><br>
+        <a href="https://github.com/becuhkyy">github.com/becuhkyy</a><br>
+        <a href="https://www.linkedin.com/in/vesko-vasilev-a49795127/">linkedin.com/in/vesko-vasilev</a>
+      </p>
+      <p>
+        The resume, same content in two formats:
+        <a href="/cv.pdf">cv.pdf</a> for humans and their ATS,
+        <a href="/cv.txt">cv.txt</a> for terminals.
+      </p>
+      <p class="dim">The terminal needs JavaScript. The facts do not.</p>
+    </section>
+  </noscript>
+
+  <!-- one continuous session: typed commands + instant output land here -->
+  <div id="history" role="log" aria-label="terminal session"></div>
+
+  <!-- the live prompt -->
+  <form id="prompt-form" autocomplete="off">
+    <label for="prompt-input"><span class="prompt">guest@veskov.dev</span><span class="path">:~$</span></label>
+    <input id="prompt-input" type="text" spellcheck="false" autocomplete="off">
+    <span class="cursor" aria-hidden="true"></span>
+  </form>
+
+  <footer>
+    <span class="dim">© <span id="year"></span> <span id="footer-handle"></span> · served from a small hetzner box · uptime: aggressively boring</span>
+  </footer>
+</main>
+
+<script src="main.js"></script>
+</body>
+</html>
