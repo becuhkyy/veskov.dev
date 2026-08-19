@@ -2,7 +2,7 @@
    veskov.dev :: terminal theme
    ============================================================ */
 :root {
-  --desk:      #070a07;
+  --desk:      #040604;
   --winw:      1100px;
   --bg:        #0b0f0b;
   --bg-panel:  #0e140e;
@@ -36,18 +36,19 @@ body {
   height: 100dvh;
   overflow: hidden;
   display: flex; flex-direction: column;
-  padding: 1rem 1.4rem 1.2rem;
 }
 
 ::selection { background: var(--green); color: #04140a; }
 
-/* ---------- The desktop nav bar, above the window ---------- */
+/* ---------- The desktop's top bar: full-wide, links on the right ---------- */
 .topnav {
-  width: min(100%, var(--winw));
-  margin: 0 auto .6rem;
-  display: flex; gap: 1.1rem; flex-wrap: wrap;
-  padding: 0 .4rem;
+  width: 100%;
+  display: flex; align-items: center; gap: 1.1rem; flex-wrap: wrap;
+  padding: .2rem 1.1rem;
+  background: var(--bg-panel);
+  border-bottom: 1px solid var(--border);
 }
+.nav-brand { color: var(--dim); font-size: 13px; margin-right: auto; }
 .topnav a {
   color: var(--green-dim); text-decoration: none; font-size: 13px;
   padding: .3rem .3rem;
@@ -58,18 +59,19 @@ body {
 /* ---------- The window ---------- */
 .window {
   position: relative;
-  width: min(100%, var(--winw));
-  margin: 0 auto;
+  width: min(100% - 2.8rem, var(--winw));
+  margin: 1.1rem auto;
   flex: 1; min-height: 0;
   display: flex; flex-direction: column;
   background: var(--bg);
-  border: 1px solid var(--border);
+  border: 1px solid #27402c;
   border-radius: 10px;
   overflow: hidden; /* the radius clips the scanlines and the boot overlay too */
   box-shadow:
-    0 24px 70px rgba(0, 0, 0, .6),
-    0 0 0 1px rgba(0, 0, 0, .45),
-    0 0 48px rgba(70, 255, 138, .05);
+    0 0 0 1px rgba(70, 255, 138, .09),
+    0 30px 90px rgba(0, 0, 0, .8),
+    0 12px 36px rgba(0, 0, 0, .55),
+    0 0 80px rgba(70, 255, 138, .08);
 }
 
 /* ---------- CRT effects: absolute, so they live on the screen ---------- */
@@ -340,11 +342,12 @@ a:hover { text-shadow: 0 0 6px rgba(91, 231, 233, .5); }
   outline-offset: 2px;
 }
 
-/* ---------- Footer: a caption on the desktop, under the window ---------- */
+/* ---------- Footer: the desktop's status bar, under the window ---------- */
 .deskfoot {
-  width: min(100%, var(--winw));
-  margin: .6rem auto 0;
-  padding: 0 .4rem;
+  width: 100%;
+  padding: .3rem 1.1rem;
+  background: var(--bg-panel);
+  border-top: 1px solid var(--border);
   font-size: 13px;
 }
 
@@ -357,15 +360,15 @@ a:hover { text-shadow: 0 0 6px rgba(91, 231, 233, .5); }
 
 /* small screens: the window goes full-bleed, the desktop steps aside */
 @media (max-width: 700px) {
-  body { padding: 0; }
-  .topnav { margin: 0; padding: .15rem .9rem; background: var(--bg-panel); border-bottom: 1px solid var(--border); }
+  .topnav { padding: .15rem .9rem; }
   .topnav a { padding: .55rem .3rem; }
-  .window { border: none; border-radius: 0; box-shadow: none; }
+  .window { width: 100%; margin: 0; border: none; border-radius: 0; box-shadow: none; }
   .deskfoot { display: none; }
 }
 
 @media (max-width: 560px) {
   .topnav { gap: .9rem; }
+  .nav-brand { display: none; }
   /* the bar is narrow: buy the bigger type back out of the horizontal padding */
   .topnav a { font-size: 13px; padding: .55rem 0; }
   .contact-row,
