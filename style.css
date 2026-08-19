@@ -83,6 +83,8 @@ body {
 }
 /* JS holds the window closed until the OS has booted; without JS it never is */
 .window.pre-open { opacity: 0; transform: scale(.94); }
+/* once JS manages the geometry in px, the opening ratio and caps step aside */
+.window.managed { aspect-ratio: auto; max-height: none; }
 .window.maximized { border-radius: 0; }
 /* only the maximize toggle animates: dragging must track the cursor 1:1 */
 .window.animating {
@@ -403,6 +405,7 @@ a:hover { text-shadow: 0 0 6px rgba(91, 231, 233, .5); }
   .window {
     left: 0 !important; top: 0 !important;
     width: 100% !important; height: 100% !important;
+    aspect-ratio: auto; max-height: none;
     border: none; border-radius: 0; box-shadow: none;
   }
   .win-resize { display: none; }

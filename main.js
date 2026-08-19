@@ -847,6 +847,7 @@ function winRect() {
            width: w.width, height: w.height, dw: d.width, dh: d.height };
 }
 function applyGeom(g) {
+  windowEl.classList.add("managed"); // inline px governs from here on
   windowEl.style.left   = Math.round(g.left) + "px";
   windowEl.style.top    = Math.round(g.top) + "px";
   windowEl.style.width  = Math.round(g.width) + "px";
