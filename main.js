@@ -880,25 +880,33 @@ function setMaximized(on) {
 let drag = null;
 titlebar.addEventListener("pointerdown", (e) => {
   if (!FLOATING.matches || e.button !== 0 || e.target.closest("button")) return;
-  let g = winRect();
-  if (maximized) {
-    // dragging a maximized window peels it off under the cursor, like a WM
-    const frac = deskPoint(e).x / g.dw;
-    const pg = clampGeom({ ...prevGeom, dw: g.dw, dh: g.dh });
-    pg.left = clampNum(deskPoint(e).x - pg.width * frac, 0, g.dw - pg.width);
-    pg.top  = 0;
-    applyGeom(pg);
-    maximized = false;
-    windowEl.classList.remove("maximized");
-    g = winRect();
-  }
   const p = deskPoint(e);
-  drag = { dx: p.x - g.left, dy: p.y - g.top };
+  const g = winRect();
+  // nothing changes yet: a click is not a drag until the pointer proves it
+  drag = { sx: p.x, sy: p.y, dx: p.x - g.left, dy: p.y - g.top, active: false };
   titlebar.setPointerCapture(e.pointerId);
 });
 titlebar.addEventListener("pointermove", (e) => {
   if (!drag) return;
   const p = deskPoint(e);
+  if (!drag.active) {
+    if (Math.hypot(p.x - drag.sx, p.y - drag.sy) < 4) return;
+    if (maximized) {
+      // an actual drag peels the maximized window off under the cursor, like a WM
+      const g = winRect();
+      const frac = p.x / g.dw;
+      const pg = clampGeom({ ...prevGeom, dw: g.dw, dh: g.dh });
+      pg.left = clampNum(p.x - pg.width * frac, 0, g.dw - pg.width);
+      pg.top  = 0;
+      applyGeom(pg);
+      maximized = false;
+      windowEl.classList.remove("maximized");
+      const r = winRect();
+      drag.dx = p.x - r.left;
+      drag.dy = p.y - r.top;
+    }
+    drag.active = true;
+  }
   applyGeom(clampGeom({ ...winRect(), left: p.x - drag.dx, top: p.y - drag.dy }));
 });
 ["pointerup", "pointercancel"].forEach((ev) =>
