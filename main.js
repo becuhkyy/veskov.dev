@@ -4,7 +4,7 @@
    ★  EDIT THIS BLOCK: everything personal lives here.  ★
    ============================================================ */
 const CONFIG = {
-  name:    "vesko vasilev",
+  name:    "vesko_vasilev",
   handle:  "veskov",
   role:    "full-stack engineer: typescript · node · react",
   location: "Troyan, Bulgaria",
@@ -168,8 +168,10 @@ const sleep = (ms) => {
 };
 function wakeAll() { [...waiting].forEach((wake) => wake()); }
 
-const history = $("#history");
-const input   = $("#prompt-input");
+const history  = $("#history");
+const input    = $("#prompt-input");
+const viewport = $("#viewport");
+const windowEl = $("#window");
 
 /* the block cursor lives after the input, so the input is only ever as wide as
    its own text; every write to input.value goes through setInput to keep them
@@ -192,19 +194,19 @@ let stickToBottom = true;
 let introOverflow = false;      // the intro has grown past one screen
 let readerScrolled = false;     // the visitor has scrolled on purpose
 function nearBottom() {
-  return window.innerHeight + window.scrollY >= document.body.scrollHeight - SCROLL_SLACK;
+  return viewport.scrollTop + viewport.clientHeight >= viewport.scrollHeight - SCROLL_SLACK;
 }
-window.addEventListener("scroll", () => { stickToBottom = nearBottom(); }, { passive: true });
+viewport.addEventListener("scroll", () => { stickToBottom = nearBottom(); }, { passive: true });
 ["wheel", "touchmove"].forEach((ev) =>
   window.addEventListener(ev, () => { readerScrolled = true; }, { passive: true })
 );
 
 function scrollBottom() {
-  if (introRunning && document.body.scrollHeight > window.innerHeight + 4) {
+  if (introRunning && viewport.scrollHeight > viewport.clientHeight + 4) {
     if (!introOverflow) { introOverflow = true; stickToBottom = false; }
     if (!readerScrolled) return; // they are reading from the top: do not drag them
   }
-  if (stickToBottom) window.scrollTo(0, document.body.scrollHeight);
+  if (stickToBottom) viewport.scrollTo(0, viewport.scrollHeight);
 }
 
 /* ---------- Boot sequence ---------- */
@@ -212,13 +214,15 @@ const BOOT_LINES = [
   "[ OK ] veskov.dev kernel 6.9.0 loading…",
   "[ OK ] mounting /dev/curiosity",
   "[ OK ] starting apache2 … already running (other tenants undisturbed)",
+  "[ OK ] starting window manager … one window is enough",
   "[ OK ] establishing session for guest",
   "",
   "welcome to veskov.dev · last login: just now",
 ];
 /* the overlay is opaque, so nothing behind it should be reachable by Tab */
 function setBehindInert(on) {
-  [document.querySelector("main"), document.querySelector("header")].forEach((n) => {
+  [document.querySelector("main"), document.querySelector("header"),
+   document.querySelector(".topnav")].forEach((n) => {
     if (!n) return;
     if (on) n.setAttribute("inert", "");
     else n.removeAttribute("inert");
@@ -319,7 +323,7 @@ async function pump() {
       if (typed) { setInput(""); await typeIntoInput(cmd); }
       commit(cmd);
       // a beat between auto-typed lines only; a queued visitor line gets none
-      if (typed && pending.length) await sleep(280 + Math.random() * 320);
+      if (typed && pending.length) await sleep(650 + Math.random() * 450);
     }
   } finally {
     busy = false;
@@ -348,7 +352,7 @@ function commit(cmd) {
     out = textOut((cmd.trim().split(/\s+/)[0] || "command") + ": internal error", "err");
   }
   if (out) {
-    out.dataset.cmd = cmd; // lets the top bar find a section it already printed
+    out.dataset.cmd = cmd; // lets the nav bar find a section it already printed
     history.appendChild(out);
   }
   cmdLog.push(cmd); // auto-typed and nav lines included, so ArrowUp recalls them
@@ -362,17 +366,10 @@ let skipHint = null;
 
 function showSkipHint() {
   if (skipHint) return;
-  skipHint = el("button", null, "esc: skip intro");
+  skipHint = el("button", "skip-hint", "esc: skip intro");
   skipHint.type = "button";
-  skipHint.style.cssText = [
-    "position:fixed", "right:14px", "bottom:12px", "z-index:60",
-    "font:inherit", "font-size:12px", "line-height:1",
-    "color:var(--dim)", "background:transparent",
-    "border:1px solid currentColor", "border-radius:3px",
-    "padding:8px 10px", "opacity:.75", "cursor:pointer",
-  ].join(";");
   skipHint.addEventListener("click", skipIntro);
-  document.body.appendChild(skipHint);
+  windowEl.appendChild(skipHint);
 }
 
 function hideSkipHint() {
@@ -511,7 +508,7 @@ function statusOut() {
   block.tabIndex = 0;
   block.setAttribute("role", "group");
   block.setAttribute("aria-label", "systemctl status output");
-  const first = CONFIG.name.split(" ")[0];
+  const first = CONFIG.name.split(/[\s_-]/)[0];
   const title = CONFIG.role.split(":")[0].trim();
   const s = CONFIG.status;
   const availability = CONFIG.contacts.status || "status unknown";
@@ -627,7 +624,7 @@ function helpOut() {
     row.appendChild(el("span", "help-desc", desc));
     o.appendChild(row);
   });
-  o.appendChild(el("div", "help-tip", "tip: the links in the top bar type these for you · tab completes"));
+  o.appendChild(el("div", "help-tip", "tip: the nav bar up top types these for you · tab completes"));
   return o;
 }
 
@@ -820,8 +817,151 @@ document.querySelectorAll(".topnav a").forEach((a) => {
     if (!seen) { enqueue(cmd, true); return; }
     const prev = seen.previousElementSibling;
     const target = prev && prev.classList.contains("h-line") ? prev : seen;
-    target.scrollIntoView({ behavior: "smooth", block: "start" });
+    target.scrollIntoView({ behavior: SNAP ? "auto" : "smooth", block: "start" });
   });
+});
+
+/* ---------- Titlebar buttons ---------- */
+/* close tries to exit, minimize clears the screen: both answer in-session */
+$("#btn-close").addEventListener("click", () => enqueue("exit", false));
+$("#btn-min").addEventListener("click", () => enqueue("clear", false));
+$("#btn-max").addEventListener("click", () => setMaximized(!maximized));
+
+/* ---------- Window management: drag, resize, maximize ----------
+   Big screens only: on phones the window is pinned full-bleed by CSS.
+   All geometry is desk-relative; the first interaction materialises the
+   CSS default position into inline px and everything works from there. */
+const desk     = $("#desk");
+const titlebar = document.querySelector(".titlebar");
+const grip     = document.querySelector(".win-resize");
+const FLOATING = window.matchMedia("(min-width: 701px)");
+const clampNum = (v, lo, hi) => Math.max(lo, Math.min(hi, v));
+
+let maximized = false;
+let prevGeom  = null; // where the window goes back to after a maximize
+
+function winRect() {
+  const d = desk.getBoundingClientRect();
+  const w = windowEl.getBoundingClientRect();
+  return { left: w.left - d.left, top: w.top - d.top,
+           width: w.width, height: w.height, dw: d.width, dh: d.height };
+}
+function applyGeom(g) {
+  windowEl.classList.add("managed"); // inline px governs from here on
+  windowEl.style.left   = Math.round(g.left) + "px";
+  windowEl.style.top    = Math.round(g.top) + "px";
+  windowEl.style.width  = Math.round(g.width) + "px";
+  windowEl.style.height = Math.round(g.height) + "px";
+}
+/* the window stays fully on the desk, and never smaller than usable */
+function clampGeom(g) {
+  g.width  = clampNum(g.width, Math.min(420, g.dw), g.dw);
+  g.height = clampNum(g.height, Math.min(320, g.dh), g.dh);
+  g.left   = clampNum(g.left, 0, g.dw - g.width);
+  g.top    = clampNum(g.top, 0, g.dh - g.height);
+  return g;
+}
+function deskPoint(e) {
+  const d = desk.getBoundingClientRect();
+  return { x: e.clientX - d.left, y: e.clientY - d.top };
+}
+
+/* the toggle animates; drags and resizes cancel it and move raw */
+let animTimer = null;
+function animateGeom(fn) {
+  windowEl.classList.add("animating");
+  fn();
+  clearTimeout(animTimer);
+  animTimer = setTimeout(() => windowEl.classList.remove("animating"), 260);
+}
+function stopAnim() {
+  clearTimeout(animTimer);
+  windowEl.classList.remove("animating");
+}
+
+function setMaximized(on) {
+  if (!FLOATING.matches || on === maximized) return;
+  const g = winRect();
+  if (on) {
+    prevGeom = g;
+    animateGeom(() => applyGeom({ left: 0, top: 0, width: g.dw, height: g.dh }));
+  } else if (prevGeom) {
+    animateGeom(() => applyGeom(clampGeom({ ...prevGeom, dw: g.dw, dh: g.dh })));
+  }
+  maximized = on;
+  windowEl.classList.toggle("maximized", on);
+}
+
+let drag = null;
+titlebar.addEventListener("pointerdown", (e) => {
+  if (!FLOATING.matches || e.button !== 0 || e.target.closest("button")) return;
+  stopAnim(); // a grab mid-animation freezes the window where it is
+  const p = deskPoint(e);
+  const g = winRect();
+  // nothing changes yet: a click is not a drag until the pointer proves it
+  drag = { sx: p.x, sy: p.y, dx: p.x - g.left, dy: p.y - g.top, active: false };
+  titlebar.setPointerCapture(e.pointerId);
+});
+titlebar.addEventListener("pointermove", (e) => {
+  if (!drag) return;
+  const p = deskPoint(e);
+  if (!drag.active) {
+    if (Math.hypot(p.x - drag.sx, p.y - drag.sy) < 4) return;
+    if (maximized) {
+      // an actual drag peels the maximized window off under the cursor, like a WM
+      const g = winRect();
+      const frac = p.x / g.dw;
+      const pg = clampGeom({ ...prevGeom, dw: g.dw, dh: g.dh });
+      pg.left = clampNum(p.x - pg.width * frac, 0, g.dw - pg.width);
+      pg.top  = 0;
+      applyGeom(pg);
+      maximized = false;
+      windowEl.classList.remove("maximized");
+      const r = winRect();
+      drag.dx = p.x - r.left;
+      drag.dy = p.y - r.top;
+    }
+    drag.active = true;
+  }
+  applyGeom(clampGeom({ ...winRect(), left: p.x - drag.dx, top: p.y - drag.dy }));
+});
+["pointerup", "pointercancel"].forEach((ev) =>
+  titlebar.addEventListener(ev, () => { drag = null; })
+);
+/* double-click the bar: same as the green button */
+titlebar.addEventListener("dblclick", (e) => {
+  if (e.target.closest("button")) return;
+  setMaximized(!maximized);
+});
+
+let resizing = null;
+grip.addEventListener("pointerdown", (e) => {
+  if (!FLOATING.matches || e.button !== 0) return;
+  stopAnim();
+  const g = winRect();
+  const p = deskPoint(e);
+  resizing = { w: g.width, h: g.height, x: p.x, y: p.y };
+  grip.setPointerCapture(e.pointerId);
+});
+grip.addEventListener("pointermove", (e) => {
+  if (!resizing) return;
+  if (maximized) { maximized = false; windowEl.classList.remove("maximized"); }
+  const g = winRect();
+  const p = deskPoint(e);
+  applyGeom(clampGeom({ ...g,
+    width:  resizing.w + (p.x - resizing.x),
+    height: resizing.h + (p.y - resizing.y) }));
+});
+["pointerup", "pointercancel"].forEach((ev) =>
+  grip.addEventListener(ev, () => { resizing = null; })
+);
+
+/* a browser resize must not strand the window outside the desk */
+window.addEventListener("resize", () => {
+  if (!FLOATING.matches) return;
+  const g = winRect();
+  if (maximized) applyGeom({ left: 0, top: 0, width: g.dw, height: g.dh });
+  else if (windowEl.style.left) applyGeom(clampGeom(g));
 });
 
 /* ---------- Go ---------- */
@@ -843,9 +983,16 @@ const DEEP_LINKS = {
 };
 const deepLink = DEEP_LINKS[(PARAMS.get("cmd") || "").trim().toLowerCase()];
 
+function openWindow() {
+  windowEl.classList.remove("pre-open");
+}
+
 async function runSession() {
   introRunning = true;
   await boot();
+  await sleep(250);  // the black screen lifts, the desktop shows
+  openWindow();
+  await sleep(700);  // the window lands before anyone types in it
   if (!SNAP && !skipping) showSkipHint();
   AUTO_SEQUENCE.forEach((cmd) => enqueue(cmd, true));
   await queueDone;
@@ -858,12 +1005,14 @@ async function runSession() {
 async function runDeepLink(cmd) {
   skipping = true; // nothing to watch, the visitor asked for a specific line
   await boot();
+  openWindow();
   skipping = false;
   if (cmd !== "whoami") commit("whoami");
   commit(cmd);
   input.focus({ preventScroll: true });
 }
 
+windowEl.classList.add("pre-open");
 setBehindInert(true);
 if (deepLink) runDeepLink(deepLink);
 else runSession();

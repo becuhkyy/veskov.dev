@@ -7,14 +7,22 @@ Hosted on a Hetzner box at [veskov.dev](https://veskov.dev).
 
 ## How it works
 
-After a short boot sequence, the site types itself: `whoami`, `cat ~/tagline.txt`,
+The browser boots the OS first: the boot log plays on a black screen, the
+desktop appears, and the terminal window opens with a pop. Then the site types
+itself: `whoami`, `cat ~/tagline.txt`,
 `cat ~/about.md`, `cat ~/experience.md`, `ls -la ~/projects/`, `cat ~/contacts.md`
 and `help` run automatically, in that order, with fast, irregular, human-like
 typing (occasional hesitation and typo-and-correct). Output renders instantly.
 Then the prompt is handed to the visitor.
 
-The top bar links (`~/about`, `~/work`, `~/projects`, `~/contact`) type their own
-commands into the session. Everything the visitor types at the prompt is answered
+The page is drawn as a desktop: a nav bar on top, one terminal window under it
+(the session scrolls inside the window), and the copyright line as a caption
+below. The window is a real one: drag it by the title bar, resize it from the
+bottom-right grip, maximize with the green button or a double-click on the bar.
+The other two buttons answer in-session: close runs `exit`, minimize runs
+`clear`. On phones the window pins itself full-bleed instead. The nav links
+(`~/about`, `~/work`, `~/projects`, `~/contact`) type their own commands into
+the session. Everything the visitor types at the prompt is answered
 too, so try `cv`, `status`, `sudo`, `ping`, `ls`, `work`, `projects`, `clear`.
 Arrow-up/down cycles history; Tab completes commands and the filenames `cat`
 takes, and a second Tab on the same line lists the candidates.
@@ -25,6 +33,7 @@ Append `?snap` to the URL to skip all animation and render the session instantly
 
 - `index.html`: page structure
 - `style.css`: terminal theme (CRT scanlines, glow, glitch)
+- `noscript.css`: loaded only without JS, hides the boot overlay and the dead prompt
 - `main.js`: content + session engine
 - `cv.txt`: the resume as a hand-set text file, 7-bit ASCII, 80 columns
 - `cv.pdf`: the printable A4 resume, rendered from `tools/cv/cv.html`
