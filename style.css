@@ -62,9 +62,13 @@ body {
 
 .window {
   position: absolute;
-  left: 4%; top: 6%;
-  width: min(var(--winw), 80%);
-  height: min(680px, 86%);
+  left: 4%; top: 7%;
+  /* the opening size scales with the screen: two thirds wide, 8:5 like a
+     terminal, capped for ultrawides and for short desks; a drag or resize
+     replaces all of this with inline px and the ratio steps aside */
+  width: min(66%, 1560px);
+  aspect-ratio: 8 / 5;
+  max-height: 86%;
   display: flex; flex-direction: column;
   background: var(--bg);
   border: 1px solid #27402c;
