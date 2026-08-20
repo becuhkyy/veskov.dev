@@ -25,7 +25,7 @@ const CONFIG = {
     { group: "databases",      items: ["postgresql", "mssql", "prisma"] },
     { group: "devops",         items: ["docker", "kubernetes", "github actions"] },
     { group: "virtualization", items: ["kvm", "proxmox", "incus", "openvz"] },
-    { group: "systems",        items: ["linux", "nginx", "apache", "whm/cpanel"] },
+    { group: "systems",        items: ["linux", "nginx", "apache"] },
     { group: "tooling",        items: ["vitest", "git", "neovim", "bash", "terraform", "ansible"] },
   ],
   /* the ones the job hunt runs on: rendered with an amber accent */
