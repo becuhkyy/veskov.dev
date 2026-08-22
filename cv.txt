@@ -110,12 +110,14 @@ PROJECTS -----------------------------------------------------------------------
 
 SKILLS -------------------------------------------------------------------------
 
-  languages   TypeScript, JavaScript, C#, Python
-  backend     Node.js, NestJS, Strapi, GraphQL, REST, .NET
-  frontend    React 19, Next.js, Tailwind, PWA
-  data        PostgreSQL, MSSQL, SQLite, MongoDB
-  infra       Linux (expert), KVM, Docker, Kubernetes
-  tooling     Playwright, Vitest, Git, GitHub Actions
+  languages       TypeScript, C#
+  frontend        React 19, Next.js, TanStack, shadcn/ui
+  backend         Node.js, NestJS, .NET, GraphQL, Kafka
+  databases       PostgreSQL, MSSQL, Prisma
+  devops          Docker, Kubernetes, GitHub Actions
+  virtualization  KVM, Proxmox, Incus, OpenVZ
+  systems         Linux, Nginx, Apache
+  tooling         Vitest, Git, Neovim, Bash, Terraform, Ansible
 
 COMMUNITY AND AWARDS -----------------------------------------------------------
 
