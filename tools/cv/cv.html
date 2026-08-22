@@ -34,7 +34,7 @@
 
 @page {
 	size: A4;
-	margin: 13mm 15mm 11mm;
+	margin: 12mm 15mm 10mm;
 }
 
 * { margin: 0; padding: 0; box-sizing: border-box; }
@@ -44,7 +44,7 @@ body {
 	color: var(--body);
 	font-family: var(--sans);
 	font-size: 9.4pt;
-	line-height: 1.56;
+	line-height: 1.5;
 	-webkit-print-color-adjust: exact;
 	print-color-adjust: exact;
 }
@@ -80,7 +80,7 @@ h1 {
 .sep { color: var(--rule); padding: 0 3pt; }
 
 /* ---------- Sections ---------- */
-section { margin-top: 12pt; }
+section { margin-top: 10.5pt; }
 /* the short closing sections read as blocks; never split one across pages */
 section.block { break-inside: avoid; }
 h2 {
@@ -98,7 +98,7 @@ h2 {
 .lede { color: var(--body); }
 
 /* ---------- Entries ---------- */
-.entry { margin-bottom: 8.5pt; break-inside: avoid; }
+.entry { margin-bottom: 7.5pt; break-inside: avoid; }
 .entry:last-child { margin-bottom: 0; }
 .entry-head {
 	display: flex;
@@ -136,7 +136,7 @@ h3 {
 }
 
 /* ---------- Projects ---------- */
-.project { margin-bottom: 7.5pt; break-inside: avoid; }
+.project { margin-bottom: 6.5pt; break-inside: avoid; }
 .project:last-child { margin-bottom: 0; }
 .p-name {
 	font-family: var(--mono);
@@ -158,7 +158,7 @@ h3 {
 .p-desc { margin-top: 1.5pt; }
 
 /* ---------- Two-column label rows (skills, languages) ---------- */
-.rows { display: grid; grid-template-columns: 72pt 1fr; gap: 3.5pt 8pt; }
+.rows { display: grid; grid-template-columns: 72pt 1fr; gap: 3pt 8pt; }
 .rows dt {
 	font-family: var(--mono);
 	font-size: 8pt;
@@ -191,7 +191,7 @@ h3 {
 
 <section>
 	<h2>Summary</h2>
-	<p class="lede">Twelve years keeping other people's servers alive, now building the software that runs on them. I moved from running production infrastructure to shipping production software and brought the instincts with me: typed APIs, migrations that survive a rollback, deploys nobody has to stay awake for. Sole engineer behind the Bulgarian Volleyball Federation's electronic licensing system, in production since 2025, and its competition platform, delivered for the 2026/27 season; lead engineer on the systems running the Nota Bene pharmacy chain and its medical laboratory.</p>
+	<p class="lede">Twelve years keeping other people's servers alive, now building the software that runs on them. I moved from running production infrastructure to shipping production software and brought the instincts with me: typed APIs, migrations that survive a rollback, deploys nobody has to stay awake for. Sole engineer behind the Bulgarian Volleyball Federation's electronic licensing system, in production since 2025, and its competition platform, delivered for the 2026/27 season; lead engineer on the systems running the Nota Bene pharmacy chain and its compounding laboratory.</p>
 </section>
 
 <section>
@@ -204,7 +204,8 @@ h3 {
 		</div>
 		<p class="org">Bulgarian Volleyball Federation &middot; remote</p>
 		<ul>
-			<li>Sole engineer behind the federation's entire software estate: I conceive the systems, sell them to the administration, own the architecture, and ship end to end.</li>
+			<li>Sole engineer behind the federation's entire software estate and the vision for its digital development: I conceive the systems, own the architecture, and ship end to end.</li>
+			<li>Advisor on every digital decision the federation takes: I report directly to the administrative director, and proposals go from there to the board.</li>
 			<li>Shipped the electronic licensing system behind db.bvf.bg and the public register on bvf.bg: 185 endpoints, 1,383 backend tests with a hard 100% coverage gate. In production since 2025.</li>
 			<li>Delivered the competition platform that digitalises the federation's championships: schedule generation, standings, match bulletins. Its prototype scheduled the Hemus region's 2025/26 season; it launches with the 2026/27 season.</li>
 		</ul>
@@ -217,8 +218,10 @@ h3 {
 		</div>
 		<p class="org">Nota Bene pharmacy chain &middot; remote</p>
 		<ul>
-			<li>Lead the two-person team digitalising the pharmacy chain: I scope the projects, own delivery, and write most of the code.</li>
-			<li>Shipped the medical laboratory's order and patient journal, a cash-flow book spanning registers, safes and transfers across shops, a REST service over the legacy Firebird pharmacy databases, and a bot that babysits a flaky national export.</li>
+			<li>Lead the four-person team digitalising the chain: I scope the projects, own delivery, and write some of the code.</li>
+			<li>Shipped the compounding laboratory's journal: lab staff process orders and track progress, patient and doctor files, automatic label printing through a custom print server, Speedy courier integration, and management reports on volumes, turnover and top prescribing doctors.</li>
+			<li>Shipped the cash-flow book spanning registers, safes and transfers across shops, a REST service over the legacy Firebird pharmacy databases, and a bot that babysits a flaky national export.</li>
+			<li>Rolled both systems out across the chain's 50 pharmacies and 400+ employees single-handedly.</li>
 		</ul>
 	</article>
 
@@ -332,7 +335,7 @@ h3 {
 			<span class="p-link">client work, private</span>
 		</div>
 		<p class="p-stack">strapi 5 &middot; mysql &middot; react 19 &middot; tanstack start</p>
-		<p class="p-desc">Order and patient journal for the Nota Bene medical laboratory: order lifecycle, documents and role-based access for the lab staff. In production.</p>
+		<p class="p-desc">Journal for Nota Bene's compounding laboratory: order processing and progress tracking for the lab staff, patient and doctor files, automatic label printing through a custom print server, Speedy courier integration, and reports on volumes, turnover and top prescribing doctors. In production across the chain.</p>
 	</article>
 
 	<article class="project">

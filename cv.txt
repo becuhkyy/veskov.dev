@@ -33,16 +33,19 @@ SUMMARY ------------------------------------------------------------------------
       Sole engineer behind the Bulgarian Volleyball Federation's electronic
       licensing system, in production since 2025, and its competition
       platform, delivered for the 2026/27 season. Lead engineer on the
-      systems running the Nota Bene pharmacy chain and its medical
+      systems running the Nota Bene pharmacy chain and its compounding
       laboratory.
 
 EXPERIENCE ---------------------------------------------------------------------
 
   Full-Stack Engineer (Contract)                            Dec 2022 - present
   Bulgarian Volleyball Federation                                       remote
-      Sole engineer behind the federation's entire software estate: I
-      conceive the systems, sell them to the administration, own the
-      architecture, and ship end to end.
+      Sole engineer behind the federation's entire software estate and
+      the vision for its digital development: I conceive the systems,
+      own the architecture, and ship end to end.
+      - Advisor on every digital decision the federation takes: I report
+        directly to the administrative director, and proposals go from
+        there to the board.
       - Shipped the electronic licensing system behind db.bvf.bg and the
         public register on bvf.bg: 185 endpoints, 1,383 backend tests with
         a hard 100% coverage gate. In production since 2025.
@@ -53,12 +56,19 @@ EXPERIENCE ---------------------------------------------------------------------
 
   Lead Full-Stack Engineer (Contract)                       Oct 2024 - present
   Nota Bene pharmacy chain                                              remote
-      Lead the two-person team digitalising the pharmacy chain: I scope
-      the projects, own delivery, and write most of the code.
-      - Shipped the medical laboratory's order and patient journal, a
-        cash-flow book spanning registers, safes and transfers across
-        shops, a REST service over the legacy Firebird pharmacy databases,
-        and a bot that babysits a flaky national export.
+      Lead the four-person team digitalising the chain: I scope the
+      projects, own delivery, and write some of the code.
+      - Shipped the compounding laboratory's journal: lab staff process
+        orders and track progress, patient and doctor files, automatic
+        label printing through a custom print server, Speedy courier
+        integration, and management reports on volumes, turnover and top
+        prescribing doctors.
+      - Shipped the cash-flow book spanning registers, safes and
+        transfers across shops, a REST service over the legacy Firebird
+        pharmacy databases, and a bot that babysits a flaky national
+        export.
+      - Rolled both systems out across the chain's 50 pharmacies and
+        400+ employees single-handedly.
 
   Senior System Administrator                               Jan 2014 - Aug 2026
   Nodisto IT, LLC (VPSDime / Backupsy / Winity)                          remote
@@ -154,9 +164,11 @@ PROJECTS -----------------------------------------------------------------------
       note    source public, MIT
 
   notabene-journal
-      Order and patient journal for the Nota Bene medical laboratory: order
-      lifecycle, documents and role-based access for the lab staff. In
-      production.
+      Journal for Nota Bene's compounding laboratory: order processing and
+      progress tracking for the lab staff, patient and doctor files,
+      automatic label printing through a custom print server, Speedy
+      courier integration, and reports on volumes, turnover and top
+      prescribing doctors. In production across the chain.
       stack   strapi 5, mysql, react 19, tanstack start
       note    private repo, client work
 

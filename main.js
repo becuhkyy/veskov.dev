@@ -37,13 +37,13 @@ const CONFIG = {
       role: "Full-Stack Engineer (Contract)",
       org:  "Bulgarian Volleyball Federation",
       when: "2022-present · remote",
-      desc: "Sole engineer behind the federation's entire software estate: I conceive the systems, sell them to the administration, own the architecture, and ship end to end. The licensing system is in production since 2025; the competition platform is delivered and launches with the 2026/27 season.",
+      desc: "Sole engineer behind the federation's entire software estate and the vision for its digital development: I conceive the systems, own the architecture, and ship end to end, advising the administrative director on every digital decision. The licensing system is in production since 2025; the competition platform is delivered and launches with the 2026/27 season.",
     },
     {
       role: "Lead Full-Stack Engineer (Contract)",
       org:  "Nota Bene pharmacy chain",
       when: "2024-present · remote",
-      desc: "Lead the two-person team digitalising the pharmacy chain: I scope the projects, own delivery, and write most of the code. Shipped the lab's order and patient journal, a cash-flow book across shops, a REST service over the legacy Firebird databases, and a bot that babysits a flaky national export.",
+      desc: "Lead the four-person team digitalising the chain: I scope the projects, own delivery, and write some of the code. Shipped the compounding lab's journal with label printing and courier integration, the cash-flow book, a REST service over the legacy Firebird databases, and a bot that babysits a flaky national export. Rolled it all out across 50 pharmacies and 400+ employees single-handedly.",
     },
     {
       role: "Senior System Administrator",
@@ -112,7 +112,7 @@ const CONFIG = {
     },
     {
       name:  "notabene-journal",
-      desc:  "Order and patient journal for the Nota Bene medical laboratory: order lifecycle, documents and role-based access for the lab staff. In production.",
+      desc:  "Journal for Nota Bene's compounding laboratory: order processing and progress tracking for the lab staff, patient and doctor files, automatic label printing through a custom print server, Speedy courier integration, and reports on volumes, turnover and top prescribing doctors. In production across the chain.",
       stack: ["strapi 5", "mysql", "react 19", "tanstack start"],
       link:  "",
       demo:  "",
