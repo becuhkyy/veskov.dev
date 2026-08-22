@@ -6,3 +6,4 @@
 
 # internal review notes stay local, they must never ship again
 REVIEW.md
+.DS_Store
