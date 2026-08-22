@@ -112,7 +112,7 @@ const CONFIG = {
     },
     {
       name:  "notabene-journal",
-      desc:  "Journal for Nota Bene's compounding laboratory: an eight-state order lifecycle with a field-level audit trail, mobile prescription capture, one-click thermal label printing, a self-service portal where the chain's pharmacies place their own orders, push notifications, and Excel reports on volumes, turnover and top prescribing doctors. In production across the chain.",
+      desc:  "Journal for Nota Bene's compounding laboratory: an eight-state order lifecycle with a field-level audit trail, mobile prescription capture, one-click thermal label printing, a self-service portal where the chain's pharmacies place their own orders, Speedy courier integration, push notifications, and Excel reports on volumes, turnover and top prescribing doctors. In production across the chain.",
       stack: ["strapi 5", "mysql", "react 19", "tanstack start"],
       link:  "",
       demo:  "",
@@ -120,7 +120,7 @@ const CONFIG = {
     },
     {
       name:  "notabene-cashbook",
-      desc:  "Built to catch missing cash: employees track till shifts, report register and safe amounts, and the software reconciles them against takings pulled live from the POS system, with configurable tolerances, QR photo evidence, and an incident workflow from detection to resolution. Grew into the chain's operations platform: rosters, payroll, analytics that replaced a legacy Excel workbook, compliance questionnaires, and a driver cash portal. 64 data models, 106,000 lines of TypeScript, 1,000+ tests, and a live MSSQL to PostgreSQL migration with zero mismatches.",
+      desc:  "Built to catch missing cash: employees track till shifts, report register and safe amounts, and the software reconciles them against takings pulled live from the POS system, with configurable tolerances, QR photo evidence, and an incident workflow from detection to resolution. Grew into the chain's operations platform: rosters, payroll, analytics that replaced a legacy Excel workbook, compliance questionnaires, and a driver cash portal. 64 data models, 106,000 lines of TypeScript, 1,000+ tests.",
       stack: ["next.js", "prisma", "postgresql", "opentelemetry"],
       link:  "",
       demo:  "",
