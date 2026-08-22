@@ -13,7 +13,7 @@ const CONFIG = {
   about: [
     "I'm Vesko, a full-stack engineer in Troyan, Bulgaria. I build the unglamorous half well: typed APIs, migrations that survive a rollback, deploys nobody has to stay awake for. The instincts came from the hosting industry, which showed me how production actually breaks long before I was the one writing it.",
     "The clearest example is the Bulgarian Volleyball Federation's software, which I build as its sole engineer: the electronic licence registry, in production since 2025, and the competition platform, delivered for the 2026/27 season: schedule generation, standings, match bulletins, and a court-side live-scoring PWA.",
-    "The systems background still shows in how I build: small dependencies, real tests, and an operator's instinct for what breaks at 3am. This page is served from a small Hetzner box that also hosts a few other experiments.",
+    "The systems background still shows in how I build: small dependencies, real tests, and a sysadmin's instinct for what breaks at 3am. This page is served from a small Hetzner box that also hosts a few other experiments.",
     "Outside the day job: Kanban 3.0, an AI product-owner assistant bolted onto a kanban board, paying people out over Hedera the moment their card lands in Complete, took 2nd place at the 2024 Hedera hackathon. I also mentor student teams shipping their first product at Teenovator.",
     "Currently interviewing. If you are hiring senior full-stack engineers, email is the fast path; the rest of this terminal is the scenic route.",
   ],
@@ -112,7 +112,7 @@ const CONFIG = {
     },
     {
       name:  "notabene-journal",
-      desc:  "Journal for Nota Bene's compounding laboratory: order processing and progress tracking for the lab staff, patient and doctor files, automatic label printing through a custom print server, Speedy courier integration, and reports on volumes, turnover and top prescribing doctors. In production across the chain.",
+      desc:  "Journal for Nota Bene's compounding laboratory: an eight-state order lifecycle with a field-level audit trail, mobile prescription capture, one-click thermal label printing, a self-service portal where the chain's pharmacies place their own orders, push notifications, and Excel reports on volumes, turnover and top prescribing doctors. In production across the chain.",
       stack: ["strapi 5", "mysql", "react 19", "tanstack start"],
       link:  "",
       demo:  "",

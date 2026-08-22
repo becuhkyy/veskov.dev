@@ -58,11 +58,10 @@ EXPERIENCE ---------------------------------------------------------------------
   Nota Bene pharmacy chain                                              remote
       Lead the four-person team digitalising the chain: I scope the
       projects, own delivery, and write some of the code.
-      - Shipped the compounding laboratory's journal: lab staff process
-        orders and track progress, patient and doctor files, automatic
-        label printing through a custom print server, Speedy courier
-        integration, and management reports on volumes, turnover and top
-        prescribing doctors.
+      - Shipped the compounding laboratory's journal: an eight-state
+        order lifecycle with a full audit trail, thermal label printing,
+        a self-service portal for the chain's pharmacies, and reports on
+        volumes, turnover and top prescribing doctors.
       - Shipped the cash-flow book spanning registers, safes and
         transfers across shops, a REST service over the legacy Firebird
         pharmacy databases, and a bot that babysits a flaky national
@@ -165,10 +164,11 @@ PROJECTS -----------------------------------------------------------------------
       note    source public, MIT
 
   notabene-journal
-      Journal for Nota Bene's compounding laboratory: order processing and
-      progress tracking for the lab staff, patient and doctor files,
-      automatic label printing through a custom print server, Speedy
-      courier integration, and reports on volumes, turnover and top
+      Journal for Nota Bene's compounding laboratory: an eight-state
+      order lifecycle with a field-level audit trail, mobile prescription
+      capture, one-click thermal label printing, a self-service portal
+      where the chain's pharmacies place their own orders, push
+      notifications, and Excel reports on volumes, turnover and top
       prescribing doctors. In production across the chain.
       stack   strapi 5, mysql, react 19, tanstack start
       note    private repo, client work
