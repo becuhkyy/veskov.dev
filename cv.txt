@@ -14,7 +14,7 @@
 
 ================================================================================
 
-  full-stack engineer :: typescript / node / react              Troyan, Bulgaria
+  senior full-stack engineer :: typescript / node / react       Troyan, Bulgaria
   open to senior full-stack roles, remote or EU             payvesipal@gmail.com
 
   this file is what `curl veskov.dev` returns.
@@ -25,88 +25,156 @@
 SUMMARY ------------------------------------------------------------------------
 
       Twelve years keeping other people's servers alive, now building the
-      software that runs on them. I moved from running production infrastructure
-      to writing production software, and the instincts came with me: typed
-      APIs, migrations that survive a rollback, deploys nobody has to stay awake
-      for.
+      software that runs on them. I moved from running production
+      infrastructure to writing production software, and the instincts came
+      with me: typed APIs, migrations that survive a rollback, deploys nobody
+      has to stay awake for.
 
-      I designed and shipped the Bulgarian Volleyball Federation's competition
-      platform end to end: schedule generation, match documents, a live-scoring
-      PWA referees use court-side, and the federation's electronic licence
-      registry, in production since 2025.
+      Sole engineer behind the Bulgarian Volleyball Federation's electronic
+      licensing system, in production since 2025, and its competition
+      platform, in active development. Lead engineer on the systems running
+      the Nota Bene pharmacy chain and its medical laboratory.
 
 EXPERIENCE ---------------------------------------------------------------------
 
-  Senior System Administrator                                Jan 2014 - Aug 2026
-  Nodisto IT, LLC (VPSDime / Backupsy / Winity)                           remote
-      Ran the infrastructure behind several VPS brands: fleet monitoring,
-      incident response under time pressure, abuse handling, and internal
-      tooling that automated the recurring work away.
+  Full-Stack Engineer (Contract)                            Dec 2022 - present
+  Bulgarian Volleyball Federation                                       remote
+      Sole engineer behind the federation's software: I propose the systems
+      to the administration, own the architecture, and deliver end to end.
+      - Shipped the electronic licensing system behind db.bvf.bg and the
+        public register on bvf.bg: 185 endpoints, 1,383 backend tests with
+        a hard 100% coverage gate. In production since 2025.
+      - Building the competition platform that digitalises the federation's
+        championships: schedule generation, standings, match bulletins. Its
+        prototype scheduled the Hemus region's 2025/26 season.
 
-  Co-Founder                                                         2016 - 2023
-  ImpactHost Ltd.                                                       Bulgaria
-      Co-owned a hosting company and built the customer-facing order forms and
-      platform frontend.
+  Lead Full-Stack Engineer (Contract)                       Oct 2024 - present
+  Nota Bene pharmacy chain                                              remote
+      Two-person team; I run the projects and implement most of the code.
+      - Shipped the medical laboratory's order and patient journal, a
+        cash-flow book spanning registers, safes and transfers across
+        shops, a REST service over the legacy Firebird pharmacy databases,
+        and a bot that babysits a flaky national export.
 
-  Chief Operations Officer                                   Nov 2013 - Aug 2022
-  AlphaVPS (DA International Group Ltd.)                                  remote
+  Senior System Administrator                               Jan 2014 - Aug 2026
+  Nodisto IT, LLC (VPSDime / Backupsy / Winity)                          remote
+      Ran the infrastructure behind three VPS brands with a team of four:
+      200+ hypervisors, 10,000+ virtual machines, six data centers.
+      - Replaced SolusVM with an in-house Go orchestrator fully integrated
+        with WHMCS, plus a customer control panel that let users solve
+        their own problems.
+      - Automated monitoring into reports and direct WHMCS actions,
+        holding a 15-minute response time, 24/7/365.
+      - Automated order review end to end: checkout telemetry, FraudRecord,
+        MaxMind and FraudLabs scoring, address and email verification.
+      - Automated OS and application template builds for the whole fleet,
+        and wrote the knowledgebase customers actually read.
+
+  Co-Founder                                                        2016 - 2023
+  ImpactHost Ltd.                                                      Bulgaria
+      Co-owned a hosting company and built the customer-facing order forms
+      and platform frontend.
+
+  Chief Operations Officer                                  Nov 2013 - Aug 2022
+  AlphaVPS (DA International Group Ltd.)                                 remote
       Joined at inception and helped grow the company from zero to
       infrastructure on multiple continents. Led development of the internal
-      tools that let a small team run a growing platform, and owned onboarding,
-      processes, and daily operations.
+      tools that let a small team run a growing platform, and owned
+      onboarding, processes, and daily operations.
 
-  Regional Coordinator                                       Sep 2023 - May 2025
-  Bulgarian Volleyball Federation, Region Hemus                         Bulgaria
-      Coordinated regional competitions. Running tournaments on paper and
-      spreadsheets is what led directly to building the federation's software.
+  Regional Coordinator                                      Sep 2023 - May 2025
+  Bulgarian Volleyball Federation, Region Hemus                        Bulgaria
+      Bulgaria's largest volleyball region by area and clubs (27), covering
+      the northwest: small clubs, tight budgets, long travel, few matches,
+      last place among the regions.
+      - Designed hybrid championship formats that maximise matches played
+        while minimising travel: teams now play 60% more matches for the
+        same average distance travelled, and Hemus has climbed from last
+        to 4th in the national ranking.
+      - Built tooling as I went: a Google Distance Matrix app that picks
+        optimal hosts by real road travel, and the first .doc bulletin
+        generator. The domain knowledge became the federation's
+        competition platform.
 
-  President & Manager                                         Oct 2018 - present
-  VC Troyan Volley (part-time)                                            Troyan
+  President & Manager                                        Oct 2018 - present
+  VC Troyan Volley (part-time)                                           Troyan
       Run a non-profit club with 110+ athletes competing in 12 of 14 national
       age groups: funding, logistics, and a full season calendar.
 
 PROJECTS -----------------------------------------------------------------------
 
-  bvf-platform
-      The Bulgarian Volleyball Federation's competition system, end to end. It
-      handles Berger schedule generation, championship and team management, and
-      match document generation. Referees run the live-scoring PWA court-side,
-      on a dependency-free, offline-tolerant scoring engine.
-      stack   typescript, strapi 5, react 19, pwa, playwright
-      source  https://github.com/becuhkyy/bvf-livescore
-      note    live-scoring source is public; the rest is private
-
   bvf-registry
-      The federation's electronic licence system for clubs, players, coaches,
-      licences, transfers, halls and season applications, feeding both the admin
-      SPA and the public register on bvf.bg. In production since 2025.
+      The federation's electronic licensing system: clubs, players, coaches,
+      licences, transfers, halls and season applications, feeding the admin
+      SPA at db.bvf.bg and the public register on bvf.bg. 185 endpoints
+      across 18 controllers; 1,383 backend tests behind a hard 100% coverage
+      gate; 755 frontend tests. Led a .NET 9 to 10 production migration with
+      proven OpenAPI parity.
       stack   c# / .net 10, ef core, sql server, react 19, tanstack query
       live    https://db.bvf.bg
-      note    private repo, client system
+      note    private repo, client system, in production since 2025
+
+  bvf-competitions
+      The federation's competition platform, single source of truth from
+      season down to match: FIDE-verified Berger schedule generation,
+      playoff brackets, standings under official BVF rules, and .docx match
+      bulletins emailed to clubs. 90,000 lines of TypeScript, 622 automated
+      tests with end-to-end specs for every feature. The prototype
+      scheduled the Hemus region's 2025/26 season: 9 championships, 11
+      groups, 28 matches, 14 bulletins.
+      stack   typescript, react 19, strapi 5, playwright
+      note    private repo, in active development
+
+  bvf-livescore
+      Court-side live scoring PWA for match secretaries: token-guarded match
+      links, offline-tolerant, full FIVB indoor and beach rules on a
+      dependency-free, event-sourced scoring engine.
+      stack   typescript, react 19, pwa, vitest
+      source  https://github.com/becuhkyy/bvf-livescore
+      note    live-scoring source is public
+
+  bvf-distances
+      Picks the optimal host for a tournament round: Google Distance Matrix
+      over the region's clubs, minimising total real road travel, with the
+      routes drawn on a map. Built in two days for the Hemus region.
+      stack   typescript, react 19, node.js, express, sqlite
+      live    https://locations.veskov.dev
+      note    source public, MIT
+
+  notabene-journal
+      Order and patient journal for the Nota Bene medical laboratory: order
+      lifecycle, documents and role-based access for the lab staff. In
+      production.
+      stack   strapi 5, mysql, react 19, tanstack start
+      note    private repo, client work
+
+  notabene-cashbook
+      Cash-flow book for the pharmacy chain: registers, safes and transfers
+      across shops, with per-role workflows for pharmacists, managers and
+      drivers.
+      stack   next.js, prisma, postgresql, opentelemetry
+      note    private repo, client work
+
+  notabene-axp-service
+      REST service exposing the chain's legacy Firebird pharmacy databases:
+      sales summaries, NZOK and profit reports, behind a central pharmacy
+      registry. Runs in production as a Windows service.
+      stack   nestjs, typescript, firebird, mysql
+      note    private repo, client work
+
+  notabene-nwa-bot
+      A stubborn Python bot that retries the flaky national NWA export
+      hourly through the night, validates every pharmacy made it in,
+      imports the best run and emails the outcome.
+      stack   python, selenium, sqlite
+      note    private repo, client work
 
   pushdb
-      Database backup orchestration SaaS, born from running backup-heavy hosting
-      infrastructure for a decade. Monorepo with a web app, a scheduler and a
-      worker, containerised and deployed to k8s.
-      stack   typescript, tanstack start, postgres, docker, kubernetes
+      Database backup orchestration SaaS, born from running backup-heavy
+      hosting infrastructure for a decade. Monorepo with a web app, a
+      scheduler and a worker, containerised and deployed to Kubernetes.
+      stack   typescript, tanstack start, postgresql, docker, kubernetes
       note    private repo, work in progress
-
-  notabene-suite
-      Systems for the Nota Bene pharmacy chain and its medical laboratory. The
-      core is an order and patient journal, plus a cash-flow book that spans
-      registers, safes and transfers across shops. Underneath it, a service
-      exposes the legacy Firebird databases over a clean REST API, and a
-      stubborn Python bot retries a flaky national export until it gets a
-      complete one.
-      stack   next.js, nestjs, prisma, postgresql, firebird, python
-      note    private repos, client work
-
-  nestjs-portfolio
-      A set of services built to production patterns rather than tutorial
-      patterns: reservations with payments, task management, a GraphQL API, and
-      an AI microservice, all with DI, tests and containers throughout.
-      stack   typescript, nestjs, graphql, mongodb, next.js
-      source  https://github.com/becuhkyy?tab=repositories&q=nestjs
 
 SKILLS -------------------------------------------------------------------------
 
@@ -122,8 +190,10 @@ SKILLS -------------------------------------------------------------------------
 COMMUNITY AND AWARDS -----------------------------------------------------------
 
   2nd place, Hedera Hackathon 2024
-      GoMint, an NFT platform built around custodial key control, a bid
-      marketplace and IPFS storage.
+      Kanban 3.0: an AI product-owner assistant that turns a ten-question
+      discovery chat into a fully created kanban project, with automatic
+      HBAR payouts over Hedera Consensus Service when a card lands in
+      Complete. Team of two, built on a Planka fork.
 
   Mentor, Teenovator
       Mentoring student teams shipping their first product.

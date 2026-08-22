@@ -34,7 +34,7 @@
 
 @page {
 	size: A4;
-	margin: 14mm 15mm 13mm;
+	margin: 13mm 15mm 11mm;
 }
 
 * { margin: 0; padding: 0; box-sizing: border-box; }
@@ -80,7 +80,7 @@ h1 {
 .sep { color: var(--rule); padding: 0 3pt; }
 
 /* ---------- Sections ---------- */
-section { margin-top: 14pt; }
+section { margin-top: 12pt; }
 /* the short closing sections read as blocks; never split one across pages */
 section.block { break-inside: avoid; }
 h2 {
@@ -98,7 +98,7 @@ h2 {
 .lede { color: var(--body); }
 
 /* ---------- Entries ---------- */
-.entry { margin-bottom: 9.5pt; break-inside: avoid; }
+.entry { margin-bottom: 8.5pt; break-inside: avoid; }
 .entry:last-child { margin-bottom: 0; }
 .entry-head {
 	display: flex;
@@ -136,7 +136,7 @@ h3 {
 }
 
 /* ---------- Projects ---------- */
-.project { margin-bottom: 8.5pt; break-inside: avoid; }
+.project { margin-bottom: 7.5pt; break-inside: avoid; }
 .project:last-child { margin-bottom: 0; }
 .p-name {
 	font-family: var(--mono);
@@ -169,8 +169,8 @@ h3 {
 
 /* ---------- Footer note ---------- */
 .colophon {
-	margin-top: 13pt;
-	padding-top: 5pt;
+	margin-top: 8pt;
+	padding-top: 4pt;
 	border-top: 0.6pt solid var(--rule);
 	font-family: var(--mono);
 	font-size: 7.6pt;
@@ -183,7 +183,7 @@ h3 {
 
 <header class="masthead">
 	<h1>Vesko Vasilev</h1>
-	<p class="role">full-stack engineer &middot; typescript &middot; node.js &middot; react</p>
+	<p class="role">senior full-stack engineer &middot; typescript &middot; node.js &middot; react</p>
 	<p class="contact">
 		<span>Troyan, Bulgaria</span><span class="sep">&middot;</span><span>open to senior full-stack roles, remote or EU</span><span class="sep">&middot;</span><span><a href="mailto:payvesipal@gmail.com">payvesipal@gmail.com</a></span><span class="sep">&middot;</span><span><a href="https://github.com/becuhkyy">github.com/becuhkyy</a></span><span class="sep">&middot;</span><span><a href="https://www.linkedin.com/in/vesko-vasilev-a49795127/">linkedin.com/in/vesko-vasilev-a49795127</a></span><span class="sep">&middot;</span><span><a href="https://veskov.dev">veskov.dev</a></span>
 	</p>
@@ -191,11 +191,36 @@ h3 {
 
 <section>
 	<h2>Summary</h2>
-	<p class="lede">Twelve years keeping other people's servers alive, now building the software that runs on them. I moved from running production infrastructure to shipping production software and brought the instincts with me: typed APIs, migrations that survive a rollback, deploys nobody has to stay awake for. I designed and shipped the Bulgarian Volleyball Federation's competition platform end to end, from Berger schedule generation to a court-side live-scoring PWA and an electronic licence registry that has been in production since 2025.</p>
+	<p class="lede">Twelve years keeping other people's servers alive, now building the software that runs on them. I moved from running production infrastructure to shipping production software and brought the instincts with me: typed APIs, migrations that survive a rollback, deploys nobody has to stay awake for. Sole engineer behind the Bulgarian Volleyball Federation's electronic licensing system, in production since 2025, and its competition platform, in active development; lead engineer on the systems running the Nota Bene pharmacy chain and its medical laboratory.</p>
 </section>
 
 <section>
 	<h2>Experience</h2>
+
+	<article class="entry">
+		<div class="entry-head">
+			<h3>Full-Stack Engineer (Contract)</h3>
+			<span class="when">Dec 2022 - present</span>
+		</div>
+		<p class="org">Bulgarian Volleyball Federation &middot; remote</p>
+		<ul>
+			<li>Sole engineer behind the federation's software: I propose the systems to the administration, own the architecture, and deliver end to end.</li>
+			<li>Shipped the electronic licensing system behind db.bvf.bg and the public register on bvf.bg: 185 endpoints, 1,383 backend tests with a hard 100% coverage gate. In production since 2025.</li>
+			<li>Building the competition platform that digitalises the federation's championships: schedule generation, standings, match bulletins. Its prototype scheduled the Hemus region's 2025/26 season.</li>
+		</ul>
+	</article>
+
+	<article class="entry">
+		<div class="entry-head">
+			<h3>Lead Full-Stack Engineer (Contract)</h3>
+			<span class="when">Oct 2024 - present</span>
+		</div>
+		<p class="org">Nota Bene pharmacy chain &middot; remote</p>
+		<ul>
+			<li>Two-person team; I run the projects and implement most of the code.</li>
+			<li>Shipped the medical laboratory's order and patient journal, a cash-flow book spanning registers, safes and transfers across shops, a REST service over the legacy Firebird pharmacy databases, and a bot that babysits a flaky national export.</li>
+		</ul>
+	</article>
 
 	<article class="entry">
 		<div class="entry-head">
@@ -204,8 +229,11 @@ h3 {
 		</div>
 		<p class="org">Nodisto IT, LLC (VPSDime &middot; Backupsy &middot; Winity) &middot; remote</p>
 		<ul>
-			<li>Ran the infrastructure behind several VPS brands: fleet monitoring, incident response under time pressure, and abuse handling.</li>
-			<li>Built the internal tooling that automated the recurring operational work away.</li>
+			<li>Ran the infrastructure behind three VPS brands with a team of four: 200+ hypervisors, 10,000+ virtual machines, six data centers.</li>
+			<li>Replaced SolusVM with an in-house Go orchestrator fully integrated with WHMCS, plus a customer control panel that let users solve their own problems.</li>
+			<li>Automated monitoring into reports and direct WHMCS actions, holding a 15-minute response time, 24/7/365.</li>
+			<li>Automated order review end to end: checkout telemetry, FraudRecord, MaxMind and FraudLabs scoring, address and email verification.</li>
+			<li>Automated OS and application template builds for the whole fleet, and wrote the knowledgebase customers actually read.</li>
 		</ul>
 	</article>
 
@@ -240,7 +268,9 @@ h3 {
 		</div>
 		<p class="org">Bulgarian Volleyball Federation, Region Hemus</p>
 		<ul>
-			<li>Coordinated regional competitions. Running tournaments on paper and spreadsheets is what led directly to building the federation's software.</li>
+			<li>Bulgaria's largest volleyball region by area and clubs (27), covering the northwest: small clubs, tight budgets, long travel, few matches, last place among the regions.</li>
+			<li>Designed hybrid championship formats that maximise matches played while minimising travel: teams now play 60% more matches for the same average distance travelled, and Hemus has climbed from last to 4th in the national ranking.</li>
+			<li>Built tooling as I went: a Google Distance Matrix app that picks optimal hosts by real road travel, and the first .doc bulletin generator. The domain knowledge became the federation's competition platform.</li>
 		</ul>
 	</article>
 
@@ -261,20 +291,74 @@ h3 {
 
 	<article class="project">
 		<div class="entry-head">
-			<span class="p-name">bvf-platform</span>
-			<span class="p-link">github.com/becuhkyy/bvf-livescore</span>
-		</div>
-		<p class="p-stack">typescript &middot; strapi 5 &middot; react 19 &middot; pwa &middot; playwright</p>
-		<p class="p-desc">The Bulgarian Volleyball Federation's competition system, end to end: Berger schedule generation, championship and team management, and match document generation. Referees run the live-scoring PWA court-side on a dependency-free, offline-tolerant scoring engine. Live-scoring source is public, the rest is private.</p>
-	</article>
-
-	<article class="project">
-		<div class="entry-head">
 			<span class="p-name">bvf-registry</span>
 			<span class="p-link">db.bvf.bg</span>
 		</div>
 		<p class="p-stack">c# / .net 10 &middot; ef core &middot; sql server &middot; react 19 &middot; tanstack query</p>
-		<p class="p-desc">The federation's electronic licence system for clubs, players, coaches, licences, transfers, halls and season applications, feeding both the admin SPA and the public register on bvf.bg. In production since 2025.</p>
+		<p class="p-desc">The federation's electronic licensing system: clubs, players, coaches, licences, transfers, halls and season applications, feeding the admin SPA at db.bvf.bg and the public register on bvf.bg. 185 endpoints across 18 controllers; 1,383 backend tests behind a hard 100% coverage gate; 755 frontend tests. Led a .NET 9 to 10 production migration with proven OpenAPI parity. In production since 2025.</p>
+	</article>
+
+	<article class="project">
+		<div class="entry-head">
+			<span class="p-name">bvf-competitions</span>
+			<span class="p-link">private, in active development</span>
+		</div>
+		<p class="p-stack">typescript &middot; react 19 &middot; strapi 5 &middot; playwright</p>
+		<p class="p-desc">The federation's competition platform, single source of truth from season down to match: FIDE-verified Berger schedule generation, playoff brackets, standings under official BVF rules, and .docx match bulletins emailed to clubs. 90,000 lines of TypeScript, 622 automated tests with end-to-end specs for every feature. The prototype scheduled the Hemus region's 2025/26 season: 9 championships, 11 groups, 28 matches, 14 bulletins.</p>
+	</article>
+
+	<article class="project">
+		<div class="entry-head">
+			<span class="p-name">bvf-livescore</span>
+			<span class="p-link">github.com/becuhkyy/bvf-livescore</span>
+		</div>
+		<p class="p-stack">typescript &middot; react 19 &middot; pwa &middot; vitest</p>
+		<p class="p-desc">Court-side live scoring PWA for match secretaries: token-guarded match links, offline-tolerant, full FIVB indoor and beach rules on a dependency-free, event-sourced scoring engine.</p>
+	</article>
+
+	<article class="project">
+		<div class="entry-head">
+			<span class="p-name">bvf-distances</span>
+			<span class="p-link">locations.veskov.dev</span>
+		</div>
+		<p class="p-stack">typescript &middot; react 19 &middot; node.js &middot; express &middot; sqlite</p>
+		<p class="p-desc">Picks the optimal host for a tournament round: Google Distance Matrix over the region's clubs, minimising total real road travel, with the routes drawn on a map. Built in two days for the Hemus region.</p>
+	</article>
+
+	<article class="project">
+		<div class="entry-head">
+			<span class="p-name">notabene-journal</span>
+			<span class="p-link">client work, private</span>
+		</div>
+		<p class="p-stack">strapi 5 &middot; mysql &middot; react 19 &middot; tanstack start</p>
+		<p class="p-desc">Order and patient journal for the Nota Bene medical laboratory: order lifecycle, documents and role-based access for the lab staff. In production.</p>
+	</article>
+
+	<article class="project">
+		<div class="entry-head">
+			<span class="p-name">notabene-cashbook</span>
+			<span class="p-link">client work, private</span>
+		</div>
+		<p class="p-stack">next.js &middot; prisma &middot; postgresql &middot; opentelemetry</p>
+		<p class="p-desc">Cash-flow book for the pharmacy chain: registers, safes and transfers across shops, with per-role workflows for pharmacists, managers and drivers.</p>
+	</article>
+
+	<article class="project">
+		<div class="entry-head">
+			<span class="p-name">notabene-axp-service</span>
+			<span class="p-link">client work, private</span>
+		</div>
+		<p class="p-stack">nestjs &middot; typescript &middot; firebird &middot; mysql</p>
+		<p class="p-desc">REST service exposing the chain's legacy Firebird pharmacy databases: sales summaries, NZOK and profit reports, behind a central pharmacy registry. Runs in production as a Windows service.</p>
+	</article>
+
+	<article class="project">
+		<div class="entry-head">
+			<span class="p-name">notabene-nwa-bot</span>
+			<span class="p-link">client work, private</span>
+		</div>
+		<p class="p-stack">python &middot; selenium &middot; sqlite</p>
+		<p class="p-desc">A stubborn Python bot that retries the flaky national NWA export hourly through the night, validates every pharmacy made it in, imports the best run and emails the outcome.</p>
 	</article>
 
 	<article class="project">
@@ -282,26 +366,8 @@ h3 {
 			<span class="p-name">pushdb</span>
 			<span class="p-link">private, work in progress</span>
 		</div>
-		<p class="p-stack">typescript &middot; tanstack start &middot; postgres &middot; docker &middot; kubernetes</p>
-		<p class="p-desc">Database backup orchestration SaaS, born from running backup-heavy hosting infrastructure for a decade. Monorepo with a web app, a scheduler and a worker, containerised and deployed to k8s.</p>
-	</article>
-
-	<article class="project">
-		<div class="entry-head">
-			<span class="p-name">notabene-suite</span>
-			<span class="p-link">client work, private</span>
-		</div>
-		<p class="p-stack">next.js &middot; nestjs &middot; prisma &middot; postgresql &middot; firebird &middot; python</p>
-		<p class="p-desc">Systems for the Nota Bene pharmacy chain and its medical laboratory: an order and patient journal, plus a cash-flow book spanning registers, safes and transfers across shops. A service exposes the legacy Firebird databases over a clean REST API, and a stubborn Python bot retries a flaky national export until it gets a complete one.</p>
-	</article>
-
-	<article class="project">
-		<div class="entry-head">
-			<span class="p-name">nestjs-portfolio</span>
-			<span class="p-link">github.com/becuhkyy</span>
-		</div>
-		<p class="p-stack">typescript &middot; nestjs &middot; graphql &middot; mongodb &middot; next.js</p>
-		<p class="p-desc">Services built to production patterns rather than tutorial patterns: reservations with payments, task management, a GraphQL API, and an AI microservice, all with DI, tests and containers throughout.</p>
+		<p class="p-stack">typescript &middot; tanstack start &middot; postgresql &middot; docker &middot; kubernetes</p>
+		<p class="p-desc">Database backup orchestration SaaS, born from running backup-heavy hosting infrastructure for a decade. Monorepo with a web app, a scheduler and a worker, containerised and deployed to Kubernetes.</p>
 	</article>
 </section>
 
@@ -322,7 +388,7 @@ h3 {
 <section class="block">
 	<h2>Community and awards</h2>
 	<dl class="rows">
-		<dt>2024</dt><dd><strong>2nd place, Hedera Hackathon.</strong> GoMint, an NFT platform built around custodial key control, a bid marketplace and IPFS storage.</dd>
+		<dt>2024</dt><dd><strong>2nd place, Hedera Hackathon.</strong> Kanban 3.0: an AI product-owner assistant that turns a ten-question discovery chat into a fully created kanban project, with automatic HBAR payouts over Hedera Consensus Service when a card lands in Complete. Team of two, built on a Planka fork.</dd>
 		<dt>ongoing</dt><dd><strong>Mentor, Teenovator.</strong> Mentoring student teams shipping their first product.</dd>
 	</dl>
 </section>
