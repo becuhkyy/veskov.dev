@@ -32,8 +32,9 @@ SUMMARY ------------------------------------------------------------------------
 
       Sole engineer behind the Bulgarian Volleyball Federation's electronic
       licensing system, in production since 2025, and its competition
-      platform, in active development. Lead engineer on the systems running
-      the Nota Bene pharmacy chain and its medical laboratory.
+      platform, delivered for the 2026/27 season. Lead engineer on the
+      systems running the Nota Bene pharmacy chain and its medical
+      laboratory.
 
 EXPERIENCE ---------------------------------------------------------------------
 
@@ -44,9 +45,10 @@ EXPERIENCE ---------------------------------------------------------------------
       - Shipped the electronic licensing system behind db.bvf.bg and the
         public register on bvf.bg: 185 endpoints, 1,383 backend tests with
         a hard 100% coverage gate. In production since 2025.
-      - Building the competition platform that digitalises the federation's
-        championships: schedule generation, standings, match bulletins. Its
-        prototype scheduled the Hemus region's 2025/26 season.
+      - Delivered the competition platform that digitalises the
+        federation's championships: schedule generation, standings, match
+        bulletins. Its prototype scheduled the Hemus region's 2025/26
+        season; it launches with the 2026/27 season.
 
   Lead Full-Stack Engineer (Contract)                       Oct 2024 - present
   Nota Bene pharmacy chain                                              remote
@@ -72,15 +74,21 @@ EXPERIENCE ---------------------------------------------------------------------
 
   Co-Founder                                                        2016 - 2023
   ImpactHost Ltd.                                                      Bulgaria
-      Co-owned a hosting company and built the customer-facing order forms
-      and platform frontend.
+      Built a hosting company from zero with my co-founder.
+      - Stood up the physical platform: server procurement and logistics,
+        rack mounting, and hypervisor deployment.
+      - Set up billing, the SolusVM control panel and the backup
+        infrastructure, and built the customer-facing order forms and
+        platform frontend.
 
   Chief Operations Officer                                  Nov 2013 - Aug 2022
   AlphaVPS (DA International Group Ltd.)                                 remote
-      Joined at inception and helped grow the company from zero to
-      infrastructure on multiple continents. Led development of the internal
-      tools that let a small team run a growing platform, and owned
-      onboarding, processes, and daily operations.
+      Joined at inception and helped take the company from zero to
+      infrastructure on multiple continents.
+      - Owned onboarding, processes and daily operations end to end for
+        nearly nine years.
+      - Led development of the internal tools that let a small team run a
+        fast-growing platform: automation instead of headcount.
 
   Regional Coordinator                                      Sep 2023 - May 2025
   Bulgarian Volleyball Federation, Region Hemus                        Bulgaria
@@ -123,15 +131,14 @@ PROJECTS -----------------------------------------------------------------------
       scheduled the Hemus region's 2025/26 season: 9 championships, 11
       groups, 28 matches, 14 bulletins.
       stack   typescript, react 19, strapi 5, playwright
-      note    private repo, in active development
+      note    private repo, client system, delivered
 
   bvf-livescore
       Court-side live scoring PWA for match secretaries: token-guarded match
       links, offline-tolerant, full FIVB indoor and beach rules on a
       dependency-free, event-sourced scoring engine.
       stack   typescript, react 19, pwa, vitest
-      source  https://github.com/becuhkyy/bvf-livescore
-      note    live-scoring source is public
+      note    part of the competition platform, private repo
 
   bvf-distances
       Picks the optimal host for a tournament round: Google Distance Matrix

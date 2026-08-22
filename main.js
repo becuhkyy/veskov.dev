@@ -12,7 +12,7 @@ const CONFIG = {
 
   about: [
     "I'm Vesko, a full-stack engineer in Troyan, Bulgaria. I build the unglamorous half well: typed APIs, migrations that survive a rollback, deploys nobody has to stay awake for. The instincts came from the hosting industry, which showed me how production actually breaks long before I was the one writing it.",
-    "The clearest example is the Bulgarian Volleyball Federation's software, which I build as its sole engineer: the electronic licence registry, in production since 2025, and the competition platform now in active development: schedule generation, standings, match bulletins, and a court-side live-scoring PWA.",
+    "The clearest example is the Bulgarian Volleyball Federation's software, which I build as its sole engineer: the electronic licence registry, in production since 2025, and the competition platform, delivered for the 2026/27 season: schedule generation, standings, match bulletins, and a court-side live-scoring PWA.",
     "The systems background still shows in how I build: small dependencies, real tests, and an operator's instinct for what breaks at 3am. This page is served from a small Hetzner box that also hosts a few other experiments.",
     "Outside the day job: Kanban 3.0, an AI product-owner assistant bolted onto a kanban board, paying people out over Hedera the moment their card lands in Complete, took 2nd place at the 2024 Hedera hackathon. I also mentor student teams shipping their first product at Teenovator.",
     "Currently interviewing. If you are hiring senior full-stack engineers, email is the fast path; the rest of this terminal is the scenic route.",
@@ -37,7 +37,7 @@ const CONFIG = {
       role: "Full-Stack Engineer (Contract)",
       org:  "Bulgarian Volleyball Federation",
       when: "2022-present · remote",
-      desc: "Sole engineer behind the federation's software: I propose the systems to the administration, own the architecture, and deliver end to end. The licensing system is in production since 2025; the competition platform is in active development.",
+      desc: "Sole engineer behind the federation's software: I propose the systems to the administration, own the architecture, and deliver end to end. The licensing system is in production since 2025; the competition platform is delivered and launches with the 2026/27 season.",
     },
     {
       role: "Lead Full-Stack Engineer (Contract)",
@@ -55,13 +55,13 @@ const CONFIG = {
       role: "Co-Founder",
       org:  "ImpactHost Ltd.",
       when: "2016-2023",
-      desc: "Co-owned a hosting company and built the customer-facing order forms and platform frontend.",
+      desc: "Built a hosting company from zero with my co-founder: server procurement and logistics, rack mounting, hypervisor deployment, billing and SolusVM setup, backup infrastructure, and the customer-facing order forms and platform frontend.",
     },
     {
       role: "Chief Operations Officer",
       org:  "AlphaVPS (DA International Group Ltd.)",
       when: "2013-2022 · remote",
-      desc: "Joined at inception and helped grow the company from zero to infrastructure on multiple continents. Led development of the internal tools that let a small team run a growing platform, and owned onboarding, processes, and daily operations.",
+      desc: "Joined at inception and helped take the company from zero to infrastructure on multiple continents. Owned onboarding, processes and daily operations end to end for nearly nine years, and led development of the internal tools that let a small team run a fast-growing platform: automation instead of headcount.",
     },
     {
       role: "Regional Coordinator",
@@ -92,15 +92,15 @@ const CONFIG = {
       stack: ["typescript", "react 19", "strapi 5", "playwright"],
       link:  "",
       demo:  "",
-      note:  "private repo, in active development",
+      note:  "private repo, client system, delivered",
     },
     {
       name:  "bvf-livescore",
       desc:  "Court-side live scoring PWA for match secretaries: token-guarded match links, offline-tolerant, full FIVB indoor and beach rules on a dependency-free, event-sourced scoring engine.",
       stack: ["typescript", "react 19", "pwa", "vitest"],
-      link:  "https://github.com/becuhkyy/bvf-livescore",
+      link:  "",
       demo:  "",
-      note:  "live-scoring source is public",
+      note:  "part of the competition platform, private repo",
     },
     {
       name:  "bvf-distances",
