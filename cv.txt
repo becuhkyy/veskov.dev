@@ -100,10 +100,11 @@ EXPERIENCE ---------------------------------------------------------------------
       Nine years, every rung of the ladder: joined at inception as a
       junior sysadmin, left as COO of a VPS provider with infrastructure
       on multiple continents.
-      - Owned onboarding, processes and daily operations end to end while
-        the platform scaled from a first server to a global footprint.
-      - Led development of the internal tooling that kept the team small
-        while the fleet grew: automation instead of headcount.
+      - Led the tech support team and owned onboarding, processes and
+        daily operations end to end while the platform scaled from a
+        first server to a global footprint.
+      - Hands on the metal: racked every server and ran every cable in
+        the company's Sofia datacenter myself.
 
   Regional Coordinator                                      Sep 2023 - May 2025
   Bulgarian Volleyball Federation, Region Hemus                        Bulgaria
@@ -173,9 +174,12 @@ PROJECTS -----------------------------------------------------------------------
       note    private repo, client work
 
   notabene-cashbook
-      Cash-flow book for the pharmacy chain: registers, safes and transfers
-      across shops, with per-role workflows for pharmacists, managers and
-      drivers.
+      Built to catch missing cash: every employee tracks their shift,
+      reporting register amounts at start and end, and the software
+      reconciles them against expected takings from sales. Grew with the
+      client: pharmacy schedules, payroll, social security and bonus
+      calculators, per-pharmacy and per-employee cost tracking, training
+      modules, and turnover, profit and productivity reports.
       stack   next.js, prisma, postgresql, opentelemetry
       note    private repo, client work
 

@@ -43,7 +43,7 @@ const CONFIG = {
       role: "Lead Full-Stack Engineer (Contract)",
       org:  "Nota Bene pharmacy chain",
       when: "2024-present · remote",
-      desc: "Lead the four-person team digitalising the chain: I scope the projects, own delivery, and write some of the code. Shipped the compounding lab's journal with label printing and courier integration, the cash-flow book, a REST service over the legacy Firebird databases, and a bot that babysits a flaky national export. Rolled it all out across 50 pharmacies and 400+ employees single-handedly.",
+      desc: "Lead the four-person team digitalising the chain: I scope the projects, own delivery, and write some of the code. Shipped the compounding lab's order journal, the cash-flow book that catches missing cash, a REST service over the legacy Firebird databases, and a bot that babysits a flaky national export. Rolled it all out across 50 pharmacies and 400+ employees single-handedly.",
     },
     {
       role: "Senior System Administrator",
@@ -61,7 +61,7 @@ const CONFIG = {
       role: "Chief Operations Officer",
       org:  "AlphaVPS (DA International Group Ltd.)",
       when: "2013-2022 · remote",
-      desc: "Nine years, every rung of the ladder: joined at inception as a junior sysadmin, left as COO of a VPS provider with infrastructure on multiple continents. Owned onboarding, processes and daily operations end to end, and led the internal tooling that kept the team small while the fleet grew: automation instead of headcount.",
+      desc: "Nine years, every rung of the ladder: joined at inception as a junior sysadmin, left as COO of a VPS provider with infrastructure on multiple continents. Led the tech support team, owned onboarding, processes and daily operations end to end, and racked every server and ran every cable in the Sofia datacenter myself.",
     },
     {
       role: "Regional Coordinator",
@@ -120,7 +120,7 @@ const CONFIG = {
     },
     {
       name:  "notabene-cashbook",
-      desc:  "Cash-flow book for the pharmacy chain: registers, safes and transfers across shops, with per-role workflows for pharmacists, managers and drivers.",
+      desc:  "Built to catch missing cash: every employee tracks their shift, reporting register amounts at start and end, and the software reconciles them against expected takings from sales. Grew with the client: pharmacy schedules, payroll, social security and bonus calculators, per-pharmacy and per-employee cost tracking, training modules, and turnover, profit and productivity reports.",
       stack: ["next.js", "prisma", "postgresql", "opentelemetry"],
       link:  "",
       demo:  "",
