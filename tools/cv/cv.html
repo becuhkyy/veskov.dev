@@ -34,7 +34,7 @@
 
 @page {
 	size: A4;
-	margin: 12mm 15mm 10mm;
+	margin: 12mm 15mm 8mm;
 }
 
 * { margin: 0; padding: 0; box-sizing: border-box; }
@@ -54,8 +54,8 @@ a { color: inherit; text-decoration: none; }
 /* ---------- Masthead ---------- */
 .masthead {
 	border-bottom: 1.6pt solid var(--rule-hi);
-	padding-bottom: 8pt;
-	margin-bottom: 13pt;
+	padding-bottom: 6pt;
+	margin-bottom: 10pt;
 }
 h1 {
 	font-family: var(--mono);
@@ -80,7 +80,7 @@ h1 {
 .sep { color: var(--rule); padding: 0 3pt; }
 
 /* ---------- Sections ---------- */
-section { margin-top: 10.5pt; }
+section { margin-top: 10pt; }
 /* the short closing sections read as blocks; never split one across pages */
 section.block { break-inside: avoid; }
 h2 {
@@ -92,7 +92,7 @@ h2 {
 	color: var(--accent);
 	border-bottom: 0.6pt solid var(--rule);
 	padding-bottom: 3pt;
-	margin-bottom: 8pt;
+	margin-bottom: 7pt;
 }
 
 .lede { color: var(--body); }
@@ -169,8 +169,8 @@ h3 {
 
 /* ---------- Footer note ---------- */
 .colophon {
-	margin-top: 8pt;
-	padding-top: 4pt;
+	margin-top: 4pt;
+	padding-top: 3pt;
 	border-top: 0.6pt solid var(--rule);
 	font-family: var(--mono);
 	font-size: 7.6pt;
@@ -344,7 +344,7 @@ h3 {
 			<span class="p-link">client work, private</span>
 		</div>
 		<p class="p-stack">next.js &middot; prisma &middot; postgresql &middot; opentelemetry</p>
-		<p class="p-desc">Built to catch missing cash: every employee tracks their shift, reporting register amounts at start and end, and the software reconciles them against expected takings from sales. Grew with the client: pharmacy schedules, payroll, social security and bonus calculators, per-pharmacy and per-employee cost tracking, training modules, and turnover, profit and productivity reports.</p>
+		<p class="p-desc">Built to catch missing cash: employees track till shifts, report register and safe amounts, and the software reconciles them against takings pulled live from the POS system, with configurable tolerances, QR photo evidence, and an incident workflow from detection to resolution. Grew into the chain's operations platform: rosters, payroll, analytics that replaced a legacy Excel workbook, compliance questionnaires, and a driver cash portal. 64 data models, 106,000 lines of TypeScript, 1,000+ tests, and a live MSSQL to PostgreSQL migration with zero mismatches.</p>
 	</article>
 
 	<article class="project">
